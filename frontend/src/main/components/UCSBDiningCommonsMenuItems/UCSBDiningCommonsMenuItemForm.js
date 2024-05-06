@@ -59,7 +59,7 @@ function UCSBMenuItemForm({ initialContents, submitAction, buttonLabel = "Create
                             {...register("diningCommonsCode", { required: true })}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.quarterYYYYQ && ' Dining Common Code is required. '}
+                            {errors.quarterYYYYQ && 'Dining Common Code is required.'}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
@@ -74,7 +74,7 @@ function UCSBMenuItemForm({ initialContents, submitAction, buttonLabel = "Create
                             {...register("name", { required: true })}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.localDateTime && ' Dish Name is required. '}
+                            {errors.localDateTime && 'Dish Name is required.'}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
