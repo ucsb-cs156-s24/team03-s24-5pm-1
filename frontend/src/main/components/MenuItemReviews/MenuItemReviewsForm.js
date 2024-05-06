@@ -89,10 +89,12 @@ function MenuItemReviewsForm({ initialContents, submitAction, buttonLabel = "Cre
                             {...register("stars", {
                                 required: "stars is required. Must be an integer from 1 to 5.",
                                 max: {
-                                    value: 5
+                                    value: 5,
+                                    message: "Max 5"
                                 },
                                 min: {
-                                    value: 1
+                                    value: 1,
+                                    message: "Min 1"
                                 }
                             })}
                         />
