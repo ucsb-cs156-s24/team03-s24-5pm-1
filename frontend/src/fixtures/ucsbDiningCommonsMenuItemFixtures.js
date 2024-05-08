@@ -1,4 +1,4 @@
-const ucsbDatesFixtures = {
+const ucsbMenuItemsFixtures = {
     oneItem: {
         "id": 1,
         "diningCommonsCode": "ortega",
