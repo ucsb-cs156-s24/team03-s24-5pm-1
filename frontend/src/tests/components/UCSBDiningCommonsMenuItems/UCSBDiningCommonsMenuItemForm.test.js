@@ -1,6 +1,6 @@
 import { render, waitFor, fireEvent, screen } from "@testing-library/react";
 import UCSBMenuItemForm from "main/components/UCSBDiningCommonsMenuItems/UCSBDiningCommonsMenuItemForm";
-import { ucsbDatesFixtures } from "fixtures/ucsbDatesFixtures";
+import { ucsbMenuItemFixtures } from "fixtures/ucsbDiningCommonsMenuItemFixtures";
 import { BrowserRouter as Router } from "react-router-dom";
 
 const mockedNavigate = jest.fn();
@@ -29,7 +29,7 @@ describe("UCSBMenuItemForm tests", () => {
 
         render(
             <Router  >
-                <UCSBMenuItemForm initialContents={ucsbDatesFixtures.oneDate} />
+                <UCSBMenuItemForm initialContents={ucsbMenuItemFixtures.oneItem} />
             </Router>
         );
         await screen.findByTestId(/UCSBMenuItemForm-id/);
