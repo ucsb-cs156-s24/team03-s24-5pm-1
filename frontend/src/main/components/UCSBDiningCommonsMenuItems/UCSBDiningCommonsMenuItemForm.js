@@ -55,11 +55,17 @@ function UCSBMenuItemForm({ initialContents, submitAction, buttonLabel = "Create
                             data-testid="UCSBMenuItemForm-diningCommonsCode"
                             id="diningCommonsCode"
                             type="text"
-                            isInvalid={Boolean(errors.quarterYYYYQ)}
-                            {...register("diningCommonsCode", { required: true })}
+                            isInvalid={Boolean(errors.name)}
+                            {...register("dccode", {
+                                required: "Dining Common Code is required.",
+                                maxLength : {
+                                    value: 30,
+                                    message: "Max length 30 characters"
+                                }
+                            })}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.quarterYYYYQ && 'Dining Common Code is required.'}
+                            {errors.dccode?.message}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
@@ -70,11 +76,17 @@ function UCSBMenuItemForm({ initialContents, submitAction, buttonLabel = "Create
                             data-testid="UCSBMenuItemForm-name"
                             id="name"
                             type="text"
-                            isInvalid={Boolean(errors.localDateTime)}
-                            {...register("name", { required: true })}
+                            isInvalid={Boolean(errors.name)}
+                            {...register("name", {
+                                required: "Dish Name is required.",
+                                maxLength : {
+                                    value: 30,
+                                    message: "Max length 30 characters"
+                                }
+                            })}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.localDateTime && 'Dish Name is required.'}
+                            {errors.name?.message}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
@@ -95,7 +107,7 @@ function UCSBMenuItemForm({ initialContents, submitAction, buttonLabel = "Create
                             })}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.name?.message}
+                            {errors.station?.message}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
