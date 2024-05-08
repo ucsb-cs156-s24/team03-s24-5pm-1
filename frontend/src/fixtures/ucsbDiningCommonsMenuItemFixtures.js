@@ -1,4 +1,4 @@
-const ucsbMenuItemsFixtures = {
+const ucsbMenuItemFixtures = {
     oneItem: {
         "id": 1,
         "diningCommonsCode": "ortega",
@@ -28,4 +28,4 @@ const ucsbMenuItemsFixtures = {
 };
 
 
-export { ucsbDatesFixtures };
+export { ucsbMenuItemFixtures };
