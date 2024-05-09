@@ -71,17 +71,17 @@ describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
         );
 
         await waitFor(() => {
-            expect(screen.getByTestId("UCSBDateForm-diningCommonsCode")).toBeInTheDocument();
+            expect(screen.getByTestId("UCSBMenuItemForm-diningCommonsCode")).toBeInTheDocument();
         });
 
-        const diningCommonsCodeField = screen.getByTestId("UCSBDateForm-diningCommonsCode");
-        const nameField = screen.getByTestId("UCSBDateForm-name");
-        const localDateTimeField = screen.getByTestId("UCSBDateForm-localDateTime");
-        const submitButton = screen.getByTestId("UCSBDateForm-submit");
+        const diningCommonsCodeField = screen.getByTestId("UCSBMenuItemForm-diningCommonsCode");
+        const nameField = screen.getByTestId("UCSBMenuItemForm-name");
+        const stationField = screen.getByTestId("UCSBMenuItemForm-station");
+        const submitButton = screen.getByTestId("UCSBMenuItemForm-submit");
 
-        fireEvent.change(diningCommonsCodeField, { target: { value: '20221' } });
-        fireEvent.change(nameField, { target: { value: 'Groundhog Day' } });
-        fireEvent.change(localDateTimeField, { target: { value: '2022-02-02T00:00' } });
+        fireEvent.change(diningCommonsCodeField, { target: { value: 'ortega' } });
+        fireEvent.change(nameField, { target: { value: 'Baked Pesto Pasta with Chicken' } });
+        fireEvent.change(stationField, { target: { value: 'Entrees' } });
 
         expect(submitButton).toBeInTheDocument();
 
@@ -91,12 +91,12 @@ describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
 
         expect(axiosMock.history.post[0].params).toEqual(
             {
-            "localDateTime": "2022-02-02T00:00",
-            "name": "Groundhog Day",
-            "diningCommonsCode": "20221"
+            "station": "Entrees",
+            "name": "Baked Pesto Pasta with Chicken",
+            "diningCommonsCode": "Entrees"
         });
 
-        expect(mockToast).toBeCalledWith("New ucsbDate Created - id: 17 name: Groundhog Day");
+        expect(mockToast).toBeCalledWith("New ucsbMenuItem Created - id: 17 name: Baked Pesto Pasta with Chicken");
         expect(mockNavigate).toBeCalledWith({ "to": "/ucsbmenuitems" });
     });
 
