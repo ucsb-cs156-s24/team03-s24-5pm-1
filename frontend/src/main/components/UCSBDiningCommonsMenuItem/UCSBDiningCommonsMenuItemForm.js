@@ -56,7 +56,7 @@ function UCSBMenuItemForm({ initialContents, submitAction, buttonLabel = "Create
                             id="diningCommonsCode"
                             type="text"
                             isInvalid={Boolean(errors.name)}
-                            {...register("dccode", {
+                            {...register("diningCommonsCode", {
                                 required: "Dining Common Code is required.",
                                 maxLength : {
                                     value: 30,
@@ -65,7 +65,7 @@ function UCSBMenuItemForm({ initialContents, submitAction, buttonLabel = "Create
                             })}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.dccode?.message}
+                            {errors.diningCommonsCode?.message}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
