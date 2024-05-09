@@ -1,4 +1,4 @@
-# STARTER-team03
+# team03-s24-5pm-1
 
 Instructions: <https://ucsb-cs156.github.io/s24/lab/team03.html>
 
