@@ -53,14 +53,14 @@ describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
     test("when you fill in the form and hit submit, it makes a request to the backend", async () => {
 
         const queryClient = new QueryClient();
-        const ucsbDate = {
+        const ucsbMenuItem = {
             id: 17,
             diningCommonsCode: "ortega",
             name: "Baked Pesto Pasta with Chicken",
             station: "Entrees"
         };
 
-        axiosMock.onPost("/api/ucsbmenuitems/post").reply( 202, ucsbDate );
+        axiosMock.onPost("/api/ucsbmenuitems/post").reply( 202, ucsbMenuItem );
 
         render(
             <QueryClientProvider client={queryClient}>
@@ -88,19 +88,14 @@ describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
         fireEvent.click(submitButton);
 
         await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
-
         expect(axiosMock.history.post[0].params).toEqual(
             {
             "station": "Entrees",
             "name": "Baked Pesto Pasta with Chicken",
-            "diningCommonsCode": "Entrees"
+            "diningCommonsCode": "ortega"
         });
 
         expect(mockToast).toBeCalledWith("New ucsbMenuItem Created - id: 17 name: Baked Pesto Pasta with Chicken");
         expect(mockNavigate).toBeCalledWith({ "to": "/ucsbmenuitems" });
     });
-
-
 });
-
-
