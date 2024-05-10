@@ -48,7 +48,7 @@ describe("MenuItemReviewsTable tests", () => {
         expect(screen.getByTestId(`${testId}-cell-row-0-col-reviewerEmail`)).toHaveTextContent("pmanopchantaroj@ucsb.edu");
         expect(screen.getByTestId(`${testId}-cell-row-0-col-stars`)).toHaveTextContent("5");
         expect(screen.getByTestId(`${testId}-cell-row-0-col-dateReviewed`)).toHaveTextContent("2023-11-11T12:34");
-        expect(screen.getByTestId(`${testId}-cell-row-0-col-comments`)).toHaveTextContent("Best roast beef I've ever had");
+        expect(screen.getByTestId(`${testId}-cell-row-0-col-comments`)).toHaveTextContent("Best roast beef I have ever had");
 
         expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
         expect(screen.getByTestId(`${testId}-cell-row-1-col-itemId`)).toHaveTextContent("20");
@@ -93,7 +93,7 @@ describe("MenuItemReviewsTable tests", () => {
         expect(screen.getByTestId(`${testId}-cell-row-0-col-reviewerEmail`)).toHaveTextContent("pmanopchantaroj@ucsb.edu");
         expect(screen.getByTestId(`${testId}-cell-row-0-col-stars`)).toHaveTextContent("5");
         expect(screen.getByTestId(`${testId}-cell-row-0-col-dateReviewed`)).toHaveTextContent("2023-11-11T12:34");
-        expect(screen.getByTestId(`${testId}-cell-row-0-col-comments`)).toHaveTextContent("Best roast beef I've ever had");
+        expect(screen.getByTestId(`${testId}-cell-row-0-col-comments`)).toHaveTextContent("Best roast beef I have ever had");
 
         expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
         expect(screen.getByTestId(`${testId}-cell-row-1-col-itemId`)).toHaveTextContent("20");
@@ -130,7 +130,7 @@ describe("MenuItemReviewsTable tests", () => {
         expect(screen.getByTestId(`${testId}-cell-row-0-col-reviewerEmail`)).toHaveTextContent("pmanopchantaroj@ucsb.edu");
         expect(screen.getByTestId(`${testId}-cell-row-0-col-stars`)).toHaveTextContent("5");
         expect(screen.getByTestId(`${testId}-cell-row-0-col-dateReviewed`)).toHaveTextContent("2023-11-11T12:34");
-        expect(screen.getByTestId(`${testId}-cell-row-0-col-comments`)).toHaveTextContent("Best roast beef I've ever had");
+        expect(screen.getByTestId(`${testId}-cell-row-0-col-comments`)).toHaveTextContent("Best roast beef I have ever had");
 
         const editButton = screen.getByTestId(`MenuItemReviewsTable-cell-row-0-col-Edit-button`);
         expect(editButton).toBeInTheDocument();
@@ -159,7 +159,7 @@ describe("MenuItemReviewsTable tests", () => {
         expect(screen.getByTestId(`${testId}-cell-row-0-col-reviewerEmail`)).toHaveTextContent("pmanopchantaroj@ucsb.edu");
         expect(screen.getByTestId(`${testId}-cell-row-0-col-stars`)).toHaveTextContent("5");
         expect(screen.getByTestId(`${testId}-cell-row-0-col-dateReviewed`)).toHaveTextContent("2023-11-11T12:34");
-        expect(screen.getByTestId(`${testId}-cell-row-0-col-comments`)).toHaveTextContent("Best roast beef I've ever had");
+        expect(screen.getByTestId(`${testId}-cell-row-0-col-comments`)).toHaveTextContent("Best roast beef I have ever had");
 
 
         const deleteButton = screen.getByTestId(`${testId}-cell-row-0-col-Delete-button`);

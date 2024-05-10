@@ -1,5 +1,5 @@
 import { render, waitFor, fireEvent, screen } from "@testing-library/react";
-import UCSBDatesCreatePage from "main/pages/UCSBDates/UCSBDatesCreatePage";
+import MenuItemReviewsCreatePage from "main/pages/MenuItemReviews/MenuItemReviewsCreatePage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 
@@ -28,7 +28,7 @@ jest.mock('react-router-dom', () => {
     };
 });
 
-describe("UCSBDatesCreatePage tests", () => {
+describe("MenuItemReviewsCreatePage tests", () => {
 
     const axiosMock =new AxiosMockAdapter(axios);
 
@@ -44,7 +44,7 @@ describe("UCSBDatesCreatePage tests", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <UCSBDatesCreatePage />
+                    <MenuItemReviewsCreatePage />
                 </MemoryRouter>
             </QueryClientProvider>
         );
@@ -53,35 +53,41 @@ describe("UCSBDatesCreatePage tests", () => {
     test("when you fill in the form and hit submit, it makes a request to the backend", async () => {
 
         const queryClient = new QueryClient();
-        const ucsbDate = {
-            id: 17,
-            quarterYYYYQField: 20221,
-            name: "Groundhog Day",
-            localDateTime: "2022-02-02T00:00"
+        const MenuItemReviews = {
+            id: 1,
+            itemId: 10,
+            reviewerEmail: "pmanopchantaroj@ucsb.edu",   
+            stars: 1,
+            dateReviewed: "2024-05-05T04:44",
+            comments: "roast beef is as dry as the desert"
         };
 
-        axiosMock.onPost("/api/ucsbdates/post").reply( 202, ucsbDate );
+        axiosMock.onPost("/api/menuitemreviews/post").reply( 202, MenuItemReviews );
 
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <UCSBDatesCreatePage />
+                    <MenuItemReviewsCreatePage />
                 </MemoryRouter>
             </QueryClientProvider>
         );
 
         await waitFor(() => {
-            expect(screen.getByTestId("UCSBDateForm-quarterYYYYQ")).toBeInTheDocument();
+            expect(screen.getByTestId("MenuItemReviewsForm-itemId")).toBeInTheDocument();
         });
 
-        const quarterYYYYQField = screen.getByTestId("UCSBDateForm-quarterYYYYQ");
-        const nameField = screen.getByTestId("UCSBDateForm-name");
-        const localDateTimeField = screen.getByTestId("UCSBDateForm-localDateTime");
-        const submitButton = screen.getByTestId("UCSBDateForm-submit");
+        const itemIdField = screen.getByTestId("MenuItemReviewsForm-itemId");
+        const reviewerEmailField = screen.getByTestId("MenuItemReviewsForm-reviewerEmail");
+        const starsField = screen.getByTestId("MenuItemReviewsForm-stars");
+        const commentsField = screen.getByTestId("MenuItemReviewsForm-comments");
+        const dateReviewedField = screen.getByTestId("MenuItemReviewsForm-dateReviewed");
+        const submitButton = screen.getByTestId("MenuItemReviewsForm-submit");
 
-        fireEvent.change(quarterYYYYQField, { target: { value: '20221' } });
-        fireEvent.change(nameField, { target: { value: 'Groundhog Day' } });
-        fireEvent.change(localDateTimeField, { target: { value: '2022-02-02T00:00' } });
+        fireEvent.change(itemIdField, { target: { value: '10' } });
+        fireEvent.change(reviewerEmailField, { target: { value: 'pmanopchantaroj@ucsb.edu' } });
+        fireEvent.change(starsField, { target: { value: '5' } });
+        fireEvent.change(commentsField, { target: { value: 'Best roast beef I have ever had' } });
+        fireEvent.change(dateReviewedField, { target: { value: '2023-11-11T12:34' } });
 
         expect(submitButton).toBeInTheDocument();
 
@@ -90,14 +96,16 @@ describe("UCSBDatesCreatePage tests", () => {
         await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 
         expect(axiosMock.history.post[0].params).toEqual(
-            {
-            "localDateTime": "2022-02-02T00:00",
-            "name": "Groundhog Day",
-            "quarterYYYYQ": "20221"
+        {
+            "itemId": "10",
+            "reviewerEmail": "pmanopchantaroj@ucsb.edu",   
+            "stars": "5",
+            "dateReviewed": "2023-11-11T12:34",
+            "comments": "Best roast beef I have ever had"
         });
 
-        expect(mockToast).toBeCalledWith("New ucsbDate Created - id: 17 name: Groundhog Day");
-        expect(mockNavigate).toBeCalledWith({ "to": "/ucsbdates" });
+        expect(mockToast).toBeCalledWith("New menuItemReviews Created - id: 1 itemId: 10  stars: 1");
+        expect(mockNavigate).toBeCalledWith({ "to": "/menuitemreviews" });
     });
 
 

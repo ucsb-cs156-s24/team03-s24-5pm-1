@@ -1,11 +1,12 @@
 import React from 'react'
 import { useBackend } from 'main/utils/useBackend';
+
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
+import MenuItemReviewsTable from 'main/components/MenuItemReviews/MenuItemReviewsTable';
 import { Button } from 'react-bootstrap';
 import { useCurrentUser , hasRole} from 'main/utils/currentUser';
-import MenuItemReviewsTable from 'main/components/MenuItemReviews/MenuItemReviewsTable';
 
-export default function UCSBDatesIndexPage() {
+export default function MenuItemReviewsIndexPage() {
 
   const currentUser = useCurrentUser();
 
@@ -36,7 +37,7 @@ export default function UCSBDatesIndexPage() {
       <div className="pt-2">
         {createButton()}
         <h1>MenuItemReviews</h1>
-        <MenuItemReviewsTable dates={menuItemReviews} currentUser={currentUser} />
+        <MenuItemReviewsTable menuItemReviews={menuItemReviews} currentUser={currentUser} />
       </div>
     </BasicLayout>
   )

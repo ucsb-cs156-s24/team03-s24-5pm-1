@@ -2,7 +2,7 @@ const menuItemReviewsFixtures = {
     oneMenuItemReview:
     [
       {
-       "id": 1,
+        "id": 1,
         "itemId": 10,
         "reviewerEmail": "pmanopchantaroj@ucsb.edu",   
         "stars": 1,
@@ -19,7 +19,7 @@ const menuItemReviewsFixtures = {
             "reviewerEmail": "pmanopchantaroj@ucsb.edu",   
             "stars": 5,
             "dateReviewed": "2023-11-11T12:34",
-            "comments": "Best roast beef I've ever had"
+            "comments": "Best roast beef I have ever had"
         },
 
         {
