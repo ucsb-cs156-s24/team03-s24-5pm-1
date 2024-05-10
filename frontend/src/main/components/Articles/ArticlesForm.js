@@ -89,7 +89,7 @@ function ArticlesForm({ initialContents, submitAction, buttonLabel = "Create" })
             <Row>
                 <Col>
                     <Form.Group className="mb-3" >
-                        <Form.Label htmlFor="explanation">URL</Form.Label>
+                        <Form.Label htmlFor="explanation">Explanation</Form.Label>
                         <Form.Control
                             data-testid="ArticlesForm-explanation"
                             id="explanation"
@@ -109,7 +109,7 @@ function ArticlesForm({ initialContents, submitAction, buttonLabel = "Create" })
             <Row>
                 <Col>
                     <Form.Group className="mb-3" >
-                        <Form.Label htmlFor="email">URL</Form.Label>
+                        <Form.Label htmlFor="email">Email</Form.Label>
                         <Form.Control
                             data-testid="ArticlesForm-email"
                             id="email"
@@ -141,6 +141,24 @@ function ArticlesForm({ initialContents, submitAction, buttonLabel = "Create" })
                             {errors.dateAdded && 'DateAdded is required. '}
                         </Form.Control.Feedback>
                     </Form.Group>
+                </Col>
+            </Row>
+
+            <Row>
+                <Col>
+                    <Button
+                        type="submit"
+                        data-testid="ArticlesForm-submit"
+                    >
+                        {buttonLabel}
+                    </Button>
+                    <Button
+                        variant="Secondary"
+                        onClick={() => navigate(-1)}
+                        data-testid="ArticlesForm-cancel"
+                    >
+                        Cancel
+                    </Button>
                 </Col>
             </Row>
         </Form>

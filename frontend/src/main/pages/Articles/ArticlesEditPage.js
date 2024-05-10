@@ -38,7 +38,7 @@ export default function ArticlesEditPage({storybook=false}) {
   });
 
   const onSuccess = (articles) => {
-    toast(`Articles Updated - id: ${articles.id} name: ${articles.name}`);
+    toast(`Articles Updated - id: ${articles.id} title: ${articles.title}`);
   }
 
   const mutation = useBackendMutation(

@@ -27,7 +27,7 @@ jest.mock('react-router-dom', () => {
         __esModule: true,
         ...originalModule,
         useParams: () => ({
-            id: 17
+            id: 2003
         }),
         Navigate: (x) => { mockNavigate(x); return null; }
     };
@@ -82,7 +82,7 @@ describe("ArticlesEditPage tests", () => {
                 email: "qwertyuiop@asdfghjkl.zxcvbnm",
                 dateAdded: "2024-04-01T11:11:11"
             });
-            axiosMock.onPut('/api/ucsbdates').reply(200, {
+            axiosMock.onPut('/api/articles').reply(200, {
                 id: "2003",
                 title: "Article II",
                 url: "new.url",
@@ -113,7 +113,7 @@ describe("ArticlesEditPage tests", () => {
                 </QueryClientProvider>
             );
 
-            await screen.findByTestId("Articles-title");
+            await screen.findByTestId("ArticlesForm-title");
 
             const idField = screen.getByTestId("ArticlesForm-id");
             const titleField = screen.getByTestId("ArticlesForm-title");
@@ -128,7 +128,7 @@ describe("ArticlesEditPage tests", () => {
             expect(urlField).toHaveValue("old.url");
             expect(explanationField).toHaveValue("My first article");
             expect(emailField).toHaveValue("qwertyuiop@asdfghjkl.zxcvbnm");
-            expect(dateAddedField).toHaveValue("2024-04-01T11:11:11")
+            expect(dateAddedField).toHaveValue("2024-04-01T11:11:11.000")
             expect(submitButton).toBeInTheDocument();
         });
 
@@ -142,7 +142,7 @@ describe("ArticlesEditPage tests", () => {
                 </QueryClientProvider>
             );
 
-            await screen.findByTestId("Articles-title");
+            await screen.findByTestId("ArticlesForm-title");
 
             const idField = screen.getByTestId("ArticlesForm-id");
             const titleField = screen.getByTestId("ArticlesForm-title");
@@ -157,14 +157,9 @@ describe("ArticlesEditPage tests", () => {
             expect(urlField).toHaveValue("old.url");
             expect(explanationField).toHaveValue("My first article");
             expect(emailField).toHaveValue("qwertyuiop@asdfghjkl.zxcvbnm");
-            expect(dateAddedField).toHaveValue("2024-04-01T11:11:11")
+            expect(dateAddedField).toHaveValue("2024-04-01T11:11:11.000")
             expect(submitButton).toBeInTheDocument();
 
-            /*fireEvent.change(quarterYYYYQField, { target: { value: '20224' } })
-            fireEvent.change(nameField, { target: { value: 'Christmas Morning' } })
-            fireEvent.change(localDateTimeField, { target: { value: "2022-12-25T08:00" } })
-
-            fireEvent.click(submitButton);*/
             fireEvent.change(titleField, {target: {value: "Article II"}});
             fireEvent.change(urlField, {target: {value: "new.url"}});
             fireEvent.change(explanationField, {target: {value: "My second article"}});
@@ -177,13 +172,13 @@ describe("ArticlesEditPage tests", () => {
             expect(mockNavigate).toBeCalledWith({ "to": "/articles" });
 
             expect(axiosMock.history.put.length).toBe(1); // times called
-            expect(axiosMock.history.put[0].params).toEqual({ id: 2003 });
+            expect(axiosMock.history.put[0].params).toEqual({ id: "2003" });
             expect(axiosMock.history.put[0].data).toBe(JSON.stringify({
                 title: "Article II",
                 url: "new.url",
                 explanation: "My second article",
                 email: "qazxswedc@rfvbgtyhn.mjuiklop",
-                dateAdded: "2024-05-01T19:35:00"
+                dateAdded: "2024-05-01T19:35"
             })); // posted object
         });    
     });

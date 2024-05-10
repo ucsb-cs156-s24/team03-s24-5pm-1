@@ -94,7 +94,11 @@ describe("ArticlesForm tests", () => {
         const dateAddedField = screen.getByTestId("ArticlesForm-dateAdded");
         const submitButton = screen.getByTestId("ArticlesForm-submit");
 
-        fireEvent.change(dateAddedField, { target: { value: '2022-01-02T12:00' } });
+        fireEvent.change(titleField, {target: {value: "My Article"}});
+        fireEvent.change(urlField, {target: {value: "article.com"}});
+        fireEvent.change(explanationField, {target: {value: "Article for testing"}});
+        fireEvent.change(emailField, {target: {value: "xyz@article.com"}});
+        fireEvent.change(dateAddedField, { target: { value: '2022-01-02T12:00:00' } });
         fireEvent.click(submitButton);
 
         await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());

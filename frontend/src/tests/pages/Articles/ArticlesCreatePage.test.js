@@ -59,7 +59,7 @@ describe("ArticlesCreatePage tests", () => {
             url: "myarticle.url.com",
             explanation: "An article I wrote",
             email: "my_email",
-            dateAdded: "2022-06-01T12:00:00"
+            dateAdded: "2022-06-01T12:00"
         };
 
         axiosMock.onPost("/api/articles/post").reply( 202, article );
@@ -87,7 +87,7 @@ describe("ArticlesCreatePage tests", () => {
         fireEvent.change(urlField, {target: {value: "myarticle.url.com"}});
         fireEvent.change(explanationField, {target: {value: "An article I wrote"}});
         fireEvent.change(emailField, {target: {value: "my_email"}});
-        fireEvent.change(dateAddedField, {target: {value: "2022-06-01T12:00:00"}});
+        fireEvent.change(dateAddedField, {target: {value: "2022-06-01T12:00"}});
 
         expect(submitButton).toBeInTheDocument();
 
@@ -100,11 +100,11 @@ describe("ArticlesCreatePage tests", () => {
             "title": "My Article",
             "url": "myarticle.url.com",
             "explanation": "An article I wrote",
-            "email": "My email",
-            "dateAdded": "2022-06-01T12:00:00"
+            "email": "my_email",
+            "dateAdded": "2022-06-01T12:00"
         });
 
-        expect(mockToast).toBeCalledWith("New articles Created - id: 2003 title: My Article");
+        expect(mockToast).toBeCalledWith("New articles created - id: 2003 title: My Article");
         expect(mockNavigate).toBeCalledWith({ "to": "/articles" });
     });
 

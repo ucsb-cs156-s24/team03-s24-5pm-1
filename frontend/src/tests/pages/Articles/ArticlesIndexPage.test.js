@@ -147,6 +147,6 @@ describe("ArticlesIndexPage tests", () => {
         fireEvent.click(deleteButton);
 
         // assert
-        await waitFor(() => { expect(mockToast).toBeCalledWith("Articles with id 1 was deleted") });
+        await waitFor(() => { expect(mockToast).toBeCalledWith("Articles with id 2 was deleted") });
     });
 });
