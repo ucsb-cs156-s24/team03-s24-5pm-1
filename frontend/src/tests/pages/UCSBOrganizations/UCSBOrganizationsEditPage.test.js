@@ -1,7 +1,8 @@
 import { fireEvent, render, waitFor, screen } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
-import UCSBOrganizationsEditPage from "main/pages/UCSBOrganizationss/UCSBOrganizationsEditPage";
+import UCSBOrganizationsEditPage from "main/pages/UCSBOrganizations/UCSBOrganizationsEditPage";
+// import UCSBOrganizationsForm from "components\UCSBOrganizations\UCSBOrganizationsForm.test.js";
 
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
@@ -26,7 +27,7 @@ jest.mock('react-router-dom', () => {
         __esModule: true,
         ...originalModule,
         useParams: () => ({
-            orgCode: SKY
+            orgCode: "SKY"
         }),
         Navigate: (x) => { mockNavigate(x); return null; }
     };
@@ -43,7 +44,7 @@ describe("UCSBOrganizationsEditPage tests", () => {
             axiosMock.resetHistory();
             axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
             axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
-            axiosMock.onGet("/api/orgs", { params: { orgCode: SKY } }).timeout();
+            axiosMock.onGet("/api/UCSBOrganizations", { params: { orgCode: "SKY" } }).timeout();
         });
 
         const queryClient = new QueryClient();
@@ -73,17 +74,17 @@ describe("UCSBOrganizationsEditPage tests", () => {
             axiosMock.resetHistory();
             axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
             axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
-            axiosMock.onGet("/api/orgs", { params: { orgCode: "SKY" } }).reply(200, {
-                orgCode: SKY,
+            axiosMock.onGet("/api/UCSBOrganizations", { params: { orgCode: "SKY" } }).reply(200, {
+                orgCode: "SKY",
                 orgTranslationShort: "SKYDIVING CLUB",
                 orgTranslation: "SKYDIVING CLUB AT UCSB",
                 inactive: false
             });
-            axiosMock.onPut('/api/orgs').reply(200, {
+            axiosMock.onPut('/api/UCSBOrganizations').reply(200, {
                 orgCode: "SKY",
                 orgTranslationShort: "SKYDIVING CLUB World Class",
                 orgTranslation: "Really Great SKYDIVING CLUB AT UCSB",
-                inactive: false
+                inactive: true
             });
         });
 
@@ -103,8 +104,10 @@ describe("UCSBOrganizationsEditPage tests", () => {
 
             const orgCodeField = screen.getByTestId("UCSBOrganizationsForm-orgCode");
             const orgTranslationShortField = screen.getByTestId("UCSBOrganizationsForm-orgTranslationShort");
-            const orgTranslationField = screen.getByTestId("UCSBOrganizationsForm-description");
+            const orgTranslationField = screen.getByTestId("UCSBOrganizationsForm-orgTranslation");
+            const inactiveField = screen.getByTestId("UCSBOrganizationsForm-inactive");
             const submitButton = screen.getByTestId("UCSBOrganizationsForm-submit");
+
 
             expect(orgCodeField).toBeInTheDocument();
             expect(orgCodeField).toHaveValue("SKY");
@@ -112,23 +115,27 @@ describe("UCSBOrganizationsEditPage tests", () => {
             expect(orgTranslationShortField).toHaveValue("SKYDIVING CLUB");
             expect(orgTranslationField).toBeInTheDocument();
             expect(orgTranslationField).toHaveValue("SKYDIVING CLUB AT UCSB");
+            expect(inactiveField).toBeInTheDocument();
+            expect(inactiveField).toHaveValue("false");
 
             expect(submitButton).toHaveTextContent("Update");
 
             fireEvent.change(orgTranslationShortField, { target: { value: 'SKYDIVING CLUB World Class' } });
             fireEvent.change(orgTranslationField, { target: { value: 'GREAT SKYDIVING CLUB' } });
+            fireEvent.change(inactiveField, { target: { value: true } });
             fireEvent.click(submitButton);
 
             await waitFor(() => expect(mockToast).toBeCalled());
-            expect(mockToast).toBeCalledWith("UCSBOrganizations Updated - orgCode: SKY orgTranslationShort: SKYDIVING CLUB World Class");
+            expect(mockToast).toBeCalledWith("New org Created - orgCode: SKY orgTranslationShort: SKYDIVING CLUB World Class orgTranslation: Really Great SKYDIVING CLUB AT UCSB inactive: true");
             
-            expect(mockNavigate).toBeCalledWith({ "to": "/orgs" });
+            expect(mockNavigate).toBeCalledWith({ "to": "/UCSBOrganizations" });
 
             expect(axiosMock.history.put.length).toBe(1); // times called
-            expect(axiosMock.history.put[0].params).toEqual({ orgCode: SKY });
+            expect(axiosMock.history.put[0].params).toEqual({ orgCode: 'SKY' });
             expect(axiosMock.history.put[0].data).toBe(JSON.stringify({
                 orgTranslationShort: 'SKYDIVING CLUB World Class',
-                orgTranslation: 'GREAT SKYDIVING CLUB'
+                orgTranslation: 'GREAT SKYDIVING CLUB',
+                inactive: 'true'
             })); // posted object
 
 
@@ -148,22 +155,26 @@ describe("UCSBOrganizationsEditPage tests", () => {
 
             const orgCodeField = screen.getByTestId("UCSBOrganizationsForm-orgCode");
             const orgTranslationShortField = screen.getByTestId("UCSBOrganizationsForm-orgTranslationShort");
-            const orgTranslationField = screen.getByTestId("UCSBOrganizationsForm-description");
+            const orgTranslationField = screen.getByTestId("UCSBOrganizationsForm-orgTranslation");
+            const inactiveField = screen.getByTestId("UCSBOrganizationsForm-inactive");
+
             const submitButton = screen.getByTestId("UCSBOrganizationsForm-submit");
 
             expect(orgCodeField).toHaveValue("SKY");
             expect(orgTranslationShortField).toHaveValue("SKYDIVING CLUB");
             expect(orgTranslationField).toHaveValue("SKYDIVING CLUB AT UCSB");
+            expect(inactiveField).toHaveValue("false");
             expect(submitButton).toBeInTheDocument();
 
             fireEvent.change(orgTranslationShortField, { target: { value: 'SKYDIVING CLUB World Class' } })
             fireEvent.change(orgTranslationField, { target: { value: 'GREAT SKYDIVING CLUB' } })
+            fireEvent.change(inactiveField, { target: { value: true } })
 
             fireEvent.click(submitButton);
 
             await waitFor(() => expect(mockToast).toBeCalled());
-            expect(mockToast).toBeCalledWith("UCSBOrganizations Updated - orgCode: SKY orgTranslationShort: SKYDIVING CLUB World Class");
-            expect(mockNavigate).toBeCalledWith({ "to": "/orgs" });
+            expect(mockToast).toBeCalledWith("New org Created - orgCode: SKY orgTranslationShort: SKYDIVING CLUB World Class orgTranslation: Really Great SKYDIVING CLUB AT UCSB inactive: true");
+            expect(mockNavigate).toBeCalledWith({ "to": "/UCSBOrganizations" });
         });
 
        

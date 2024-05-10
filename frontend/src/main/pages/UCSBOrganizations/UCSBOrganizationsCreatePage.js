@@ -6,19 +6,19 @@ import { toast } from "react-toastify";
 
 export default function UCSBOrganizationsCreatePage({storybook=false}) {
 
-  const objectToAxiosParams = (orgs) => ({
+  const objectToAxiosParams = (UCSBOrganizations) => ({
     url: "/api/UCSBOrganizations/post",
     method: "POST",
     params: {
-     orgCode: orgs.orgCode,
-     orgTranslationShort: orgs.orgTranslationShort,
-     orgTranslation: orgs.orgTranslation,
-     inactive: orgs.inactive
+     orgCode: UCSBOrganizations.orgCode,
+     orgTranslationShort: UCSBOrganizations.orgTranslationShort,
+     orgTranslation: UCSBOrganizations.orgTranslation,
+     inactive: UCSBOrganizations.inactive
     }
   });
 
-  const onSuccess = (orgs) => {
-    toast(`New org Created - orgCode: ${orgs.orgCode} orgTranslationShort: ${orgs.orgTranslationShort} orgTranslation: ${orgs.orgTranslation} inactive: ${orgs.inactive}`);
+  const onSuccess = (UCSBOrganizations) => {
+    toast(`New org Created - orgCode: ${UCSBOrganizations.orgCode} orgTranslationShort: ${UCSBOrganizations.orgTranslationShort} orgTranslation: ${UCSBOrganizations.orgTranslation} inactive: ${UCSBOrganizations.inactive}`);
   }
 
   const mutation = useBackendMutation(

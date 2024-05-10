@@ -1,7 +1,7 @@
 import { fireEvent, render, waitFor, screen } from "@testing-library/react";
 import { ucsbOrganizationsFixtures } from "fixtures/ucsbOrganizationsFixtures";
 import UCSBOrganizationsTable from "main/components/UCSBOrganizations/UCSBOrganizationsTable";
-import { QueryClient, QueryClientProvorgCodeer } from "react-query";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
 
@@ -16,7 +16,7 @@ jest.mock('react-router-dom', () => ({
 describe("UCSBOrganizationsTable tests", () => {
   const queryClient = new QueryClient();
 
-  const expectedHeaders = ["OrgCode", "OrgTranslationShort", "OrgTranslation", "Inactive"];
+  const expectedHeaders = ["orgCode", "orgTranslationShort", "orgTranslation", "inactive"];
   const expectedFields = ["orgCode", "orgTranslationShort", "orgTranslation", "inactive"];
   const testId = "UCSBOrganizationsTable";
 
@@ -27,11 +27,11 @@ describe("UCSBOrganizationsTable tests", () => {
 
     // act
     render(
-      <QueryClientProvorgCodeer client={queryClient}>
+      <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <UCSBOrganizationsTable orgs={[]} currentUser={currentUser} />
+          <UCSBOrganizationsTable UCSBOrganizations={[]} currentUser={currentUser} />
         </MemoryRouter>
-      </QueryClientProvorgCodeer>
+      </QueryClientProvider>
     );
 
     // assert
@@ -52,11 +52,11 @@ describe("UCSBOrganizationsTable tests", () => {
 
     // act
     render(
-      <QueryClientProvorgCodeer client={queryClient}>
+      <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <UCSBOrganizationsTable orgs={ucsbOrganizationsFixtures.threeUCSBOrganizationss} currentUser={currentUser} />
+          <UCSBOrganizationsTable UCSBOrganizations={ucsbOrganizationsFixtures.threeUCSBOrganizations} currentUser={currentUser} />
         </MemoryRouter>
-      </QueryClientProvorgCodeer>
+      </QueryClientProvider>
     );
 
     // assert
@@ -92,11 +92,11 @@ describe("UCSBOrganizationsTable tests", () => {
 
     // act
     render(
-      <QueryClientProvorgCodeer client={queryClient}>
+      <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <UCSBOrganizationsTable orgs={ucsbOrganizationsFixtures.threeUCSBOrganizationss} currentUser={currentUser} />
+          <UCSBOrganizationsTable UCSBOrganizations={ucsbOrganizationsFixtures.threeUCSBOrganizations} currentUser={currentUser} />
         </MemoryRouter>
-      </QueryClientProvorgCodeer>
+      </QueryClientProvider>
     );
 
     // assert
@@ -127,11 +127,11 @@ describe("UCSBOrganizationsTable tests", () => {
 
     // act - render the component
     render(
-      <QueryClientProvorgCodeer client={queryClient}>
+      <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <UCSBOrganizationsTable orgs={ucsbOrganizationsFixtures.threeUCSBOrganizationss} currentUser={currentUser} />
+          <UCSBOrganizationsTable UCSBOrganizations={ucsbOrganizationsFixtures.threeUCSBOrganizations} currentUser={currentUser} />
         </MemoryRouter>
-      </QueryClientProvorgCodeer>
+      </QueryClientProvider>
     );
 
     // assert - check that the expected content is rendered
@@ -145,7 +145,7 @@ describe("UCSBOrganizationsTable tests", () => {
     fireEvent.click(editButton);
 
     // assert - check that the navigate function was called with the expected path
-    await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/orgs/edit/SKY'));
+    await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/UCSBOrganizations/edit/SKY'));
 
   });
 
@@ -155,11 +155,11 @@ describe("UCSBOrganizationsTable tests", () => {
 
     // act - render the component
     render(
-      <QueryClientProvorgCodeer client={queryClient}>
+      <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <UCSBOrganizationsTable orgs={ucsbOrganizationsFixtures.threeUCSBOrganizationss} currentUser={currentUser} />
+          <UCSBOrganizationsTable UCSBOrganizations={ucsbOrganizationsFixtures.threeUCSBOrganizations} currentUser={currentUser} />
         </MemoryRouter>
-      </QueryClientProvorgCodeer>
+      </QueryClientProvider>
     );
 
     // assert - check that the expected content is rendered

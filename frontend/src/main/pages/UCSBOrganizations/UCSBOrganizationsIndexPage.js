@@ -2,7 +2,7 @@ import React from 'react'
 import { useBackend } from 'main/utils/useBackend';
 
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
-import RestaurantTable from 'main/components/UCSBOrganizations/UCSBOrganizationsTable';
+import UCSBOrganizationsTable from 'main/components/UCSBOrganizations/UCSBOrganizationsTable';
 import { useCurrentUser , hasRole} from 'main/utils/currentUser'
 import { Button } from 'react-bootstrap';
 
@@ -38,7 +38,7 @@ export default function UCSBOrganizationsIndexPage() {
             <div className="pt-2">
                 {createButton()}
                 <h1>UCSBOrganizations</h1>
-                <UCSBOrganizationsTable orgs={orgs} currentUser={currentUser} />
+                <UCSBOrganizationsTable UCSBOrganizations={orgs} currentUser={currentUser} />
             </div>
         </BasicLayout>
     );

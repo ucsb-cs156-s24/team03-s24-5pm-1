@@ -15,6 +15,10 @@ import PlaceholderIndexPage from "main/pages/Placeholder/PlaceholderIndexPage";
 import PlaceholderCreatePage from "main/pages/Placeholder/PlaceholderCreatePage";
 import PlaceholderEditPage from "main/pages/Placeholder/PlaceholderEditPage";
 
+import UCSBOrganizationsIndexPage from "main/pages/UCSBOrganizations/UCSBOrganizationsIndexPage";
+import UCSBOrganizationsCreatePage from "main/pages/UCSBOrganizations/UCSBOrganizationsCreatePage";
+import UCSBOrganizationsEditPage from "main/pages/UCSBOrganizations/UCSBOrganizationsEditPage";
+
 
 import { hasRole, useCurrentUser } from "main/utils/currentUser";
 
@@ -73,6 +77,22 @@ function App() {
             <>
               <Route exact path="/placeholder/edit/:id" element={<PlaceholderEditPage />} />
               <Route exact path="/placeholder/create" element={<PlaceholderCreatePage />} />
+            </>
+          )
+        }
+
+{
+          hasRole(currentUser, "ROLE_USER") && (
+            <>
+              <Route exact path="/UCSBOrganizations" element={<UCSBOrganizationsIndexPage />} />
+            </>
+          )
+        }
+        {
+          hasRole(currentUser, "ROLE_ADMIN") && (
+            <>
+              <Route exact path="/UCSBOrganizations/edit/:orgCode" element={<UCSBOrganizationsEditPage />} />
+              <Route exact path="/UCSBOrganizations/create" element={<UCSBOrganizationsCreatePage />} />
             </>
           )
         }

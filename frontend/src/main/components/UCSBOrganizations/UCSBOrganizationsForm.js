@@ -22,19 +22,22 @@ function UCSBOrganizationsForm({ initialContents, submitAction, buttonLabel = "C
     return (
         <Form onSubmit={handleSubmit(submitAction)}>
 
-            {initialContents && (
-                <Form.Group className="mb-3" >
-                    <Form.Label htmlFor="orgCode">orgCode</Form.Label>
-                    <Form.Control
-                        data-testid={testIdPrefix + "-orgCode"}
-                        id="orgCode"
-                        type="text"
-                        {...register("orgCode")}
-                        value={initialContents.orgCode}
-                        disabled
-                    />
-                </Form.Group>
-            )}
+            
+            <Form.Group className="mb-3" >
+                <Form.Label htmlFor="orgCode">orgCode</Form.Label>
+                <Form.Control
+                    data-testid={testIdPrefix + "-orgCode"}
+                    id="orgCode"
+                    type="text"
+                    {...register("orgCode", {
+                        required: "orgCode is required."
+                    })}
+                    disabled={initialContents?.orgCode}
+                />
+                <Form.Control.Feedback type="invalid">
+                    {errors.orgCode?.message}
+                </Form.Control.Feedback>
+            </Form.Group>
 
             <Form.Group className="mb-3" >
                 <Form.Label htmlFor="orgTranslationShort">orgTranslationShort</Form.Label>
@@ -42,7 +45,6 @@ function UCSBOrganizationsForm({ initialContents, submitAction, buttonLabel = "C
                     data-testid={testIdPrefix + "-orgTranslationShort"}
                     id="orgTranslationShort"
                     type="text"
-a
                     {...register("orgTranslationShort", {
                         required: "orgTranslationShort is required.",
                         maxLength : {
@@ -77,13 +79,12 @@ a
                     data-testid={testIdPrefix + "-inactive"}
                     id="inactive"
                     type="boolean"
-                    isInvalid={Boolean(errors.description)}
                     {...register("inactive", {
                         required: "inactive is required."
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
-                    {errors.orgTranslation?.message}
+                    {errors.inactive?.message}
                 </Form.Control.Feedback>
             </Form.Group>
 
