@@ -18,7 +18,7 @@ export default function UCSBDiningCommonsMenuItemIndexPage() {
                 href="/ucsbmenuitem/create"
                 style={{ float: "right" }}
             >
-                Create UCSBDate 
+                Create UCSBDiningCommonsMenuItem 
             </Button>
         )
     } 
