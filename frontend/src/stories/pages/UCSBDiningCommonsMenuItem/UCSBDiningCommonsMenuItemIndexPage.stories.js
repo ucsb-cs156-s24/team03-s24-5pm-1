@@ -23,7 +23,7 @@ Empty.parameters = {
         rest.get('/api/systemInfo', (_req, res, ctx) => {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
-        rest.get('/api/ucsbmenuitem/all', (_req, res, ctx) => {
+        rest.get('/api/ucsbmenuitems/all', (_req, res, ctx) => {
             return res(ctx.json([]));
         }),
     ]
@@ -39,7 +39,7 @@ ThreeItemsOrdinaryUser.parameters = {
         rest.get('/api/systemInfo', (_req, res, ctx) => {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
-        rest.get('/api/ucsbmenuitem/all', (_req, res, ctx) => {
+        rest.get('/api/ucsbmenuitems/all', (_req, res, ctx) => {
             return res(ctx.json(ucsbDatesFixtures.threeDates));
         }),
     ],
@@ -55,10 +55,10 @@ ThreeItemsAdminUser.parameters = {
         rest.get('/api/systemInfo', (_req, res, ctx) => {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
-        rest.get('/api/ucsbmenuitem/all', (_req, res, ctx) => {
+        rest.get('/api/ucsbmenuitems/all', (_req, res, ctx) => {
             return res(ctx.json(ucsbDatesFixtures.threeDates));
         }),
-        rest.delete('/api/ucsbmenuitem', (req, res, ctx) => {
+        rest.delete('/api/ucsbmenuitems', (req, res, ctx) => {
             window.alert("DELETE: " + JSON.stringify(req.url));
             return res(ctx.status(200),ctx.json({}));
         }),
