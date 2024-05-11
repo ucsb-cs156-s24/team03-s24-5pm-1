@@ -1,6 +1,6 @@
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import { useParams } from "react-router-dom";
-import UCSBMenuItemForm from "main/components/UCSBDiningCommonsMenuItem/UCSBMenuItemForm";
+import UCSBMenuItemForm from "main/components/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemForm";
 import { Navigate } from 'react-router-dom'
 import { useBackend, useBackendMutation } from "main/utils/useBackend";
 import { toast } from "react-toastify";
@@ -29,7 +29,7 @@ export default function UCSBDiningCommonsMenuItemEditPage({storybook=false}) {
       id: ucsbMenuItem.id,
     },
     data: {
-      quarterYYYYQ: ucsbMenuItem.diningCommonCode,
+      diningCommonsCode: ucsbMenuItem.diningCommonsCode,
       name: ucsbMenuItem.name,
       station: ucsbMenuItem.station
     }

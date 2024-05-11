@@ -123,7 +123,7 @@ describe("UCSBDiningCommonsMenuItemIndexPage tests", () => {
         // arrange
         setupAdminUser();
         const queryClient = new QueryClient();
-        axiosMock.onGet("/api/ucsbmenuitems/all").reply(200, ucsbMenuItemFixtures.threeDates);
+        axiosMock.onGet("/api/ucsbmenuitems/all").reply(200, ucsbMenuItemFixtures.threeItems);
         axiosMock.onDelete("/api/ucsbmenuitems").reply(200, "UCSBDiningCommonsMenuItem with id 1 was deleted");
 
         // act

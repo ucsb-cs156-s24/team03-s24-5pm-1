@@ -20,10 +20,10 @@ function UCSBMenuItemForm({ initialContents, submitAction, buttonLabel = "Create
     // Note that even this complex regex may still need some tweaks
 
     // Stryker disable next-line Regex
-    const isodate_regex = /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
+    // const isodate_regex = /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
 
     // Stryker disable next-line all
-    const yyyyq_regex = /((19)|(20))\d{2}[1-4]/i; // Accepts from 1900-2099 followed by 1-4.  Close enough.
+    // const yyyyq_regex = /((19)|(20))\d{2}[1-4]/i; // Accepts from 1900-2099 followed by 1-4.  Close enough.
 
     return (
 
@@ -57,11 +57,7 @@ function UCSBMenuItemForm({ initialContents, submitAction, buttonLabel = "Create
                             type="text"
                             isInvalid={Boolean(errors.name)}
                             {...register("diningCommonsCode", {
-                                required: "Dining Common Code is required.",
-                                maxLength : {
-                                    value: 30,
-                                    message: "Max length 30 characters"
-                                }
+                                required: "Dining Common Code is required."
                             })}
                         />
                         <Form.Control.Feedback type="invalid">
@@ -78,11 +74,7 @@ function UCSBMenuItemForm({ initialContents, submitAction, buttonLabel = "Create
                             type="text"
                             isInvalid={Boolean(errors.name)}
                             {...register("name", {
-                                required: "Dish Name is required.",
-                                maxLength : {
-                                    value: 30,
-                                    message: "Max length 30 characters"
-                                }
+                                required: "Dish Name is required."
                             })}
                         />
                         <Form.Control.Feedback type="invalid">
