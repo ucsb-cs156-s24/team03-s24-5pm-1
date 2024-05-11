@@ -9,7 +9,7 @@ import UCSBMenuItemEditPage from "main/pages/UCSBDiningCommonsMenuItem/UCSBDinin
 
 export default {
     title: 'pages/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemEditPage',
-    component: UCSBDiningCommonsMenuItemEditPage
+    component: UCSBMenuItemEditPage
 };
 
 const Template = () => <UCSBMenuItemEditPage storybook={true}/>;
