@@ -1,10 +1,9 @@
 import { fireEvent, render, waitFor, screen } from "@testing-library/react";
-import { ucsbMenuItemsFixtures } from "fixtures/ucsbMenuItemsFixtures";
-import UCSBMenuItemsTable from "main/components/UCSBDiningCommonsMenuItems/UCSBDiningCommonsMenuItemsTable"
+import { ucsbMenuItemFixtures } from "fixtures/ucsbDiningCommonsMenuItemFixtures";
+import UCSBMenuItemsTable from "main/components/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemTable"
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
-
 
 const mockedNavigate = jest.fn();
 
@@ -23,7 +22,7 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <UCSBMenuItemsTable menuItems={ucsbMenuItemsFixtures.threeItems} currentUser={currentUser} />
+          <UCSBMenuItemsTable menuItems={ucsbMenuItemFixtures.threeItems} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
@@ -61,7 +60,7 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <UCSBMenuItemsTable menuItems={ucsbMenuItemsFixtures.threeDates} currentUser={currentUser} />
+          <UCSBMenuItemsTable menuItems={ucsbMenuItemFixtures.threeItems} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
@@ -101,7 +100,7 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <UCSBMenuItemsTable menuItems={ucsbMenuItemsFixtures.threeDates} currentUser={currentUser} />
+          <UCSBMenuItemsTable menuItems={ucsbMenuItemFixtures.threeItems} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
