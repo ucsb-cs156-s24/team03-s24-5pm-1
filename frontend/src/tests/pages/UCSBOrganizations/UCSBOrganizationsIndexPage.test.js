@@ -146,7 +146,7 @@ describe("UCSBOrganizationsIndexPage tests", () => {
         await waitFor(() => { expect(axiosMock.history.delete.length).toBe(1); });
         expect(axiosMock.history.delete[0].url).toBe("/api/UCSBOrganizations");
         expect(axiosMock.history.delete[0].url).toBe("/api/UCSBOrganizations");
-        expect(axiosMock.history.delete[0].params).toEqual({ id: undefined });
+        expect(axiosMock.history.delete[0].params).toEqual({ "orgCode": "SKY" });
     });
 
 });
