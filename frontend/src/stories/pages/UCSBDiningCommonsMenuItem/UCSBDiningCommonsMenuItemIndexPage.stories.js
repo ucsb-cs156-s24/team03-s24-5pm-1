@@ -2,7 +2,7 @@
 import React from 'react';
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
-import { ucsbDatesFixtures } from "fixtures/ucsbDatesFixtures";
+import { ucsbMenuItemFixtures } from "fixtures/ucsbDiningCommonsMenuItemFixtures";
 import { rest } from "msw";
 
 import UCSBDiningCommonsMenuItemIndexPage from "main/pages/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemIndexPage";
@@ -40,7 +40,7 @@ ThreeItemsOrdinaryUser.parameters = {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
         rest.get('/api/ucsbmenuitems/all', (_req, res, ctx) => {
-            return res(ctx.json(ucsbDatesFixtures.threeDates));
+            return res(ctx.json(ucsbMenuItemFixtures.threeDates));
         }),
     ],
 }
@@ -56,7 +56,7 @@ ThreeItemsAdminUser.parameters = {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
         rest.get('/api/ucsbmenuitems/all', (_req, res, ctx) => {
-            return res(ctx.json(ucsbDatesFixtures.threeDates));
+            return res(ctx.json(ucsbMenuItemFixtures.threeDates));
         }),
         rest.delete('/api/ucsbmenuitems', (req, res, ctx) => {
             window.alert("DELETE: " + JSON.stringify(req.url));
