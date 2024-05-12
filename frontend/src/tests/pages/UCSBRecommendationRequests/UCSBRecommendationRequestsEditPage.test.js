@@ -1,7 +1,7 @@
 import { fireEvent, render, waitFor, screen } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
-import UCSBRecommendationRequestsEditPage from "main/pages//UCSBRecommendationRequestsEditPage";
+import UCSBRecommendationRequestsEditPage from "main/pages/UCSBRecommendationRequests/UCSBRecommendationRequestsEditPage";
 
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
@@ -54,7 +54,7 @@ describe("UCSBRecommendationRequestsEditPage tests", () => {
             render(
                 <QueryClientProvider client={queryClient}>
                     <MemoryRouter>
-                        <RestaurantEditPage />
+                        <UCSBRecommendationRequestsEditPage />
                     </MemoryRouter>
                 </QueryClientProvider>
             );
