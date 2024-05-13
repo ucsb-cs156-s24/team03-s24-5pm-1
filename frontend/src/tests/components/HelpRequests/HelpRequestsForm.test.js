@@ -47,12 +47,12 @@ describe("HelpRequestsForm tests", () => {
         );
         await screen.findByTestId("HelpRequests-requesterEmail");
 
-        const requesterEmail = screen.getByTestId("HelpRequests-requesterEmail");
-        const teamId = screen.getByTestId("HelpRequests-teamId");
-        const requestTime = screen.getByTestId("HelpRequests-requestTime");
-        const tableOrBreakoutRoom = screen.getByTestId("HelpRequests-tableOrBreakoutRoom");
-        const explanation = screen.getByTestId("HelpReqiests-explanation");
-        const solved = screen.getByTestId("HelpRequests-Solved");
+        // const requesterEmail = screen.getByTestId("HelpRequests-requesterEmail");
+        // const teamId = screen.getByTestId("HelpRequests-teamId");
+        // const requestTime = screen.getByTestId("HelpRequests-requestTime");
+        // const tableOrBreakoutRoom = screen.getByTestId("HelpRequests-tableOrBreakoutRoom");
+        // const explanation = screen.getByTestId("HelpReqiests-explanation");
+        // const solved = screen.getByTestId("HelpRequests-Solved");
 
         const submitButton = screen.getByTestId("HelpRequestsForm-submit");
 
