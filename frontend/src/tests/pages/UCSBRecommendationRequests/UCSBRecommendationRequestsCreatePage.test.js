@@ -1,5 +1,5 @@
 import { render, waitFor, fireEvent, screen } from "@testing-library/react";
-import UCSBRecommendationRequestsCreatePage from "main/pages/UCSBRecommendationRequests/UCSBRecommendationRequestsPage";
+import UCSBRecommendationRequestsCreatePage from "main/pages/UCSBRecommendationRequests/UCSBRecommendationRequestsCreatePage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 
@@ -58,9 +58,9 @@ describe("UCSBRecommendationRequestsCreatePage tests", () => {
             requesterEmail : "requester email 17",
             professorEmail : "professor email 17",
             explanation : "explanation 17",
-            dateRequested : "2022-07-17T12:00:00",
-            dateNeeded : "2022-08-17T12:00:00",
-            done : false  
+            dateRequested : "2022-07-17T12:00",
+            dateNeeded : "2022-08-17T12:00",
+            done : true  
         };
 
         axiosMock.onPost("/api/ucsbrecommendationrequests/post").reply( 202, ucsbRecommendationRequests );
@@ -88,9 +88,9 @@ describe("UCSBRecommendationRequestsCreatePage tests", () => {
         fireEvent.change(requesterEmailField, { target: { value: 'requester email 17' } });
         fireEvent.change(professorEmailField, { target: { value: 'professor email 17' } });
         fireEvent.change(explanationField, { target: { value: 'explanation 17' } });
-        fireEvent.change(dateRequestedField, { target: { value: '2022-07-17T12:00:00' } });
-        fireEvent.change(dateNeededField, { target: { value: '2022-08-17T12:00:00' } });
-        fireEvent.change(doneField, { target: { value: false } });
+        fireEvent.change(dateRequestedField, { target: { value: '2022-07-17T12:00' } });
+        fireEvent.change(dateNeededField, { target: { value: '2022-08-17T12:00' } });
+        fireEvent.click(doneField);
 
         expect(submitButton).toBeInTheDocument();
 
@@ -103,13 +103,13 @@ describe("UCSBRecommendationRequestsCreatePage tests", () => {
                 "requesterEmail" : "requester email 17",
                 "professorEmail" : "professor email 17",
                 "explanation" : "explanation 17",
-                "dateRequested" : "2022-07-17T12:00:00",
-                "dateNeeded" : "2022-08-17T12:00:00",
-                "done" : false  
+                "dateRequested" : "2022-07-17T12:00",
+                "dateNeeded" : "2022-08-17T12:00",
+                "done" : true  
         });
 
         expect(mockToast).toBeCalledWith("New ucsbRecommendationRequests Created - id: 17 requesterEmail: requesterEmail 17");
-        expect(mockNavigate).toBeCalledWith({ "to": "/ucsbrecommendationrequests" });
+        expect(mockNavigate).toBeCalledWith({ "to": "/UCSBRecommendationRequests" });
     });
 
 

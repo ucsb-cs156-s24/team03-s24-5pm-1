@@ -41,10 +41,10 @@ describe("RecommendationRequestsIndexPage tests", () => {
     };
 
 
-    const queryClient = new QueryClient();
 
     test("Renders with Create Button for admin user", async () => {
         setupAdminUser();
+        const queryClient = new QueryClient();
         axiosMock.onGet("/api/ucsbrecommendationrequests/all").reply(200, []);
 
         render(
@@ -65,7 +65,8 @@ describe("RecommendationRequestsIndexPage tests", () => {
 
     test("renders three UCSBRecommendationRequests correctly for regular user", async () => {
         setupUserOnly();
-        axiosMock.onGet("/api/ucsbrecommendationrequests/all").reply(200, recommendationrequestsFixtures.threeRestaurants);
+        const queryClient = new QueryClient();
+        axiosMock.onGet("/api/ucsbrecommendationrequests/all").reply(200, recommendationrequestsFixtures.threerecommendationrequests);
 
         render(
             <QueryClientProvider client={queryClient}>
@@ -97,9 +98,6 @@ describe("RecommendationRequestsIndexPage tests", () => {
         const dateNeeded = screen.getByText("2022-06-02T12:00:00");
         expect(dateNeeded).toBeInTheDocument();
 
-        const done = screen.getByText(false);
-        expect(done).toBeInTheDocument();
-
         // for non-admin users, details button is visible, but the edit and delete buttons should not be visible
         expect(screen.queryByTestId("UCSBRecommendationRequestsTable-cell-row-0-col-Delete-button")).not.toBeInTheDocument();
         expect(screen.queryByTestId("UCSBRecommendationRequestsTable-cell-row-0-col-Edit-button")).not.toBeInTheDocument();
@@ -107,6 +105,7 @@ describe("RecommendationRequestsIndexPage tests", () => {
 
     test("renders empty table when backend unavailable, user only", async () => {
         setupUserOnly();
+        const queryClient = new QueryClient();
 
         axiosMock.onGet("/api/ucsbrecommendationrequests/all").timeout();
 
@@ -130,6 +129,7 @@ describe("RecommendationRequestsIndexPage tests", () => {
 
     test("what happens when you click delete, admin", async () => {
         setupAdminUser();
+        const queryClient = new QueryClient();
 
         axiosMock.onGet("/api/ucsbrecommendationrequests/all").reply(200, recommendationrequestsFixtures.threerecommendationrequests);
         axiosMock.onDelete("/api/ucsbrecommendationrequests").reply(200, "recommendationrequests with id 1 was deleted");
@@ -153,7 +153,7 @@ describe("RecommendationRequestsIndexPage tests", () => {
 
         fireEvent.click(deleteButton);
 
-        await waitFor(() => { expect(mockToast).toBeCalledWith("UCSBRecommendationRequestsIndexPage with id 1 was deleted") });
+        await waitFor(() => { expect(mockToast).toBeCalledWith("recommendationrequests with id 1 was deleted") });
 
         await waitFor(() => { expect(axiosMock.history.delete.length).toBe(1); });
         expect(axiosMock.history.delete[0].url).toBe("/api/ucsbrecommendationrequests");

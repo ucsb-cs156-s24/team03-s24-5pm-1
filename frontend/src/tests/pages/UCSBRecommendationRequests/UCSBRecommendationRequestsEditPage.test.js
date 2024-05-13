@@ -43,7 +43,7 @@ describe("UCSBRecommendationRequestsEditPage tests", () => {
             axiosMock.resetHistory();
             axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
             axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
-            axiosMock.onGet("/api/", { params: { id: 17 } }).timeout();
+            axiosMock.onGet("/api/ucsbrecommendationrequests", { params: { id: 17 } }).timeout();
         });
 
         const queryClient = new QueryClient();
@@ -73,23 +73,23 @@ describe("UCSBRecommendationRequestsEditPage tests", () => {
             axiosMock.resetHistory();
             axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
             axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
-            axiosMock.onGet("/api/recommendationrequests", { params: { id: 17 } }).reply(200, {
+            axiosMock.onGet("/api/ucsbrecommendationrequests", { params: { id: 17 } }).reply(200, {
                 id : 17,
                 requesterEmail : "requester email 17",
                 professorEmail : "professor email 17",
                 explanation : "explanation 17",
-                dateRequested : "2022-07-17T12:00:00",
-                dateNeeded : "2022-08-17T12:00:00",
-                done : false  
+                dateRequested : "2022-07-17T12:00",
+                dateNeeded : "2022-08-17T12:00",
+                done : "false"  
             });
-            axiosMock.onPut('/api/recommendationrequests').reply(200, {
+            axiosMock.onPut('/api/ucsbrecommendationrequests').reply(200, {
                 id : 17,
-                requesterEmail : "requester email 17",
-                professorEmail : "professor email 17",
-                explanation : "explanation 17",
-                dateRequested : "2022-07-17T12:00:00",
-                dateNeeded : "2022-08-17T12:00:00",
-                done : false  
+                requesterEmail : "new email",
+                professorEmail : "new p email",
+                explanation : "new explanation",
+                dateRequested : "2023-07-17T12:00",
+                dateNeeded : "2023-08-17T12:00",
+                done : "true"
             });
         });
 
@@ -125,20 +125,20 @@ describe("UCSBRecommendationRequestsEditPage tests", () => {
             expect(explanationField).toBeInTheDocument();
             expect(explanationField).toHaveValue("explanation 17");
             expect(dateRequestedField).toBeInTheDocument();
-            expect(dateRequestedField).toHaveValue("2022-07-17T12:00:00");
+            expect(dateRequestedField).toHaveValue("2022-07-17T12:00");
             expect(dateNeededField).toBeInTheDocument();
-            expect(dateNeededField).toHaveValue("2022-08-17T12:00:00");
+            expect(dateNeededField).toHaveValue("2022-08-17T12:00");
             expect(doneField).toBeInTheDocument();
-            expect(doneField).toHaveValue(false);
+            expect(doneField).toBeChecked();
 
             expect(submitButton).toHaveTextContent("Update");
 
             fireEvent.change(requesterEmailField, { target: { value: 'new email' } });
             fireEvent.change(professorEmailField, { target: { value: 'new p email' } });
             fireEvent.change(explanationField, { target: { value: 'new explanation' } });
-            fireEvent.change(dateRequestedField, { target: { value: '2023-07-17T12:00:00' } });
-            fireEvent.change(dateNeededField, { target: { value: '2022-08-17T12:00:00' } });
-            fireEvent.change(doneField, { target: { value: true } });
+            fireEvent.change(dateRequestedField, { target: { value: '2023-07-17T12:00' } });
+            fireEvent.change(dateNeededField, { target: { value: '2023-08-17T12:00' } });
+            fireEvent.click(doneField, {target: { value: true }});
             fireEvent.click(submitButton);
 
             await waitFor(() => expect(mockToast).toBeCalled());
@@ -152,9 +152,9 @@ describe("UCSBRecommendationRequestsEditPage tests", () => {
                 requesterEmail : "new email",
                 professorEmail : "new p email",
                 explanation : "new explanation",
-                dateRequested : "2023-07-17T12:00:00",
-                dateNeeded : "2023-08-17T12:00:00",
-                done : true  
+                dateRequested : "2023-07-17T12:00",
+                dateNeeded : "2023-08-17T12:00",
+                done : false  
             })); // posted object
 
 
@@ -185,20 +185,20 @@ describe("UCSBRecommendationRequestsEditPage tests", () => {
             expect(requesterEmailField).toHaveValue("requester email 17");
             expect(professorEmailField).toHaveValue("professor email 17");
             expect(explanationField).toHaveValue("explanation 17");
-            expect(dateRequestedField).toHaveValue("2022-07-17T12:00:00");
-            expect(dateNeededField).toHaveValue("2022-08-17T12:00:00");
-            expect(doneField).toHaveValue(false);
+            expect(dateRequestedField).toHaveValue("2022-07-17T12:00");
+            expect(dateNeededField).toHaveValue("2022-08-17T12:00");
+            expect(doneField).toBeChecked();
 
             fireEvent.change(requesterEmailField, { target: { value: 'new email' } });
             fireEvent.change(professorEmailField, { target: { value: 'new p email' } });
             fireEvent.change(explanationField, { target: { value: 'new explanation' } });
-            fireEvent.change(dateRequestedField, { target: { value: '2023-07-17T12:00:00' } });
-            fireEvent.change(dateNeededField, { target: { value: '2022-08-17T12:00:00' } });
-            fireEvent.change(doneField, { target: { value: true } });
+            fireEvent.change(dateRequestedField, { target: { value: '2023-07-17T12:00' } });
+            fireEvent.change(dateNeededField, { target: { value: '2023-08-17T12:00' } });
+            fireEvent.click(doneField, {target: { value: true }});
             fireEvent.click(submitButton);
 
             await waitFor(() => expect(mockToast).toBeCalled());
-            expect(mockToast).toBeCalledWith("UCSBRecommendationRequests Updated - id: 17 ");
+            expect(mockToast).toBeCalledWith("UCSBRecommendationRequests Updated - id: 17 requesterEmail: new email");
             expect(mockNavigate).toBeCalledWith({ "to": "/UCSBRecommendationRequests" });
         });
 

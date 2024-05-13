@@ -1,5 +1,5 @@
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
-import UCSBRecommendationRequestsForm from "main/components/UCSB/UCSBRecommendationRequestsForm";
+import UCSBRecommendationRequestsForm from "main/components/UCSBRecommendationRequests/UCSBRecommendationRequestsForm";
 import { Navigate } from 'react-router-dom'
 import { useBackendMutation } from "main/utils/useBackend";
 import { toast } from "react-toastify";
@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 export default function UCSBRecommendationRequestsCreatePage({storybook=false}) {
 
   const objectToAxiosParams = (ucsbRecommendationRequests) => ({
-    url: "/api/ucsbdates/post",
+    url: "/api/ucsbdrecommendationrequests/post",
     method: "POST",
     params: {
       requesterEmail: ucsbRecommendationRequests.requesterEmail,
@@ -37,7 +37,7 @@ export default function UCSBRecommendationRequestsCreatePage({storybook=false}) 
   }
 
   if (isSuccess && !storybook) {
-    return <Navigate to="/ucsbrecommendationrequests" />
+    return <Navigate to="/UCSBRecommendationRequests" />
   }
 
   return (

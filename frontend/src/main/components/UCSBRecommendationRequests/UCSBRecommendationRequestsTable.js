@@ -31,7 +31,7 @@ export default function RecommendationRequestsTable({
 
     const columns = [
         {
-            Header: 'id',
+            Header: 'Id',
             accessor: 'id', // accessor is the "key" in the data
         },
 

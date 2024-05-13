@@ -56,7 +56,7 @@ export default function UCSBRecommendationRequestsEditPage({storybook=false}) {
   }
 
   if (isSuccess && !storybook) {
-    return <Navigate to="/ucsbrecommendationrequests" />
+    return <Navigate to="/UCSBRecommendationRequests" />
   }
 
   return (

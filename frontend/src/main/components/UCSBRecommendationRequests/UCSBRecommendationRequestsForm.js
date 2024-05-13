@@ -56,7 +56,7 @@ function UCSBRecommendationRequestsForm({ initialContents, submitAction, buttonL
                             {...register("requesterEmail", { required: "requesterEmail is required"})}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.description?.message}
+                            {errors.requesterEmail?.message}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
@@ -71,7 +71,7 @@ function UCSBRecommendationRequestsForm({ initialContents, submitAction, buttonL
                             {...register("professorEmail", { required: "professorEmail is required"})}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.description?.message}
+                            {errors.professorEmail?.message}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
@@ -86,19 +86,19 @@ function UCSBRecommendationRequestsForm({ initialContents, submitAction, buttonL
                             {...register("explanation", { required: "explanation is required"})}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.description?.message}
+                            {errors.explanation?.message}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
                 <Col>
                     <Form.Group className="mb-3" >
-                        <Form.Label htmlFor="dateRequested">Date (iso format)</Form.Label>
+                        <Form.Label htmlFor="dateRequested">DateRequested (iso format)</Form.Label>
                         <Form.Control
                             data-testid="UCSBRecommendationRequestsForm-dateRequested"
                             id="dateRequested"
                             type="datetime-local"
                             isInvalid={Boolean(errors.dateRequested)}
-                            {...register("explanation", { required: true, pattern: isodate_regex })}
+                            {...register("dateRequested", { required: true, pattern: isodate_regex })}
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.dateRequested && 'dateRequested is required. '}
@@ -107,13 +107,13 @@ function UCSBRecommendationRequestsForm({ initialContents, submitAction, buttonL
                 </Col>
                 <Col>
                     <Form.Group className="mb-3" >
-                        <Form.Label htmlFor="dateNeeded">Date (iso format)</Form.Label>
+                        <Form.Label htmlFor="dateNeeded">DateNeeded (iso format)</Form.Label>
                         <Form.Control
                             data-testid="UCSBRecommendationRequestsForm-dateNeeded"
                             id="dateNeeded"
                             type="datetime-local"
                             isInvalid={Boolean(errors.dateNeeded)}
-                            {...register("explanation", { required: true, pattern: isodate_regex })}
+                            {...register("dateNeeded", { required: true, pattern: isodate_regex })}
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.dateNeeded && 'dateNeeded is required. '}
@@ -126,12 +126,12 @@ function UCSBRecommendationRequestsForm({ initialContents, submitAction, buttonL
                         <Form.Control
                             data-testid="UCSBRecommendationRequestsForm-done"
                             id="done"
-                            type="datetime-local"
+                            type="checkbox"
                             isInvalid={Boolean(errors.done)}
-                            {...register("explanation", { required: "done is required",  })}
+                            {...register("done", {})}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.description?.message}
+                            {errors.done?.message}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
@@ -141,16 +141,16 @@ function UCSBRecommendationRequestsForm({ initialContents, submitAction, buttonL
                 <Col>
                     <Button
                         type="submit"
-                        data-testid="UCSBecommendationRequestsForm-submit"
+                        data-testid="UCSBRecommendationRequestsForm-submit"
                     >
                         {buttonLabel}
                     </Button>
                     <Button
                         variant="Secondary"
                         onClick={() => navigate(-1)}
-                        data-testid="UCSBecommendationRequestsForm-cancel"
+                        data-testid="UCSBRecommendationRequestsForm-cancel"
                     >
-                        Cancel
+                        cancel
                     </Button>
                 </Col>
             </Row>

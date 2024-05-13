@@ -24,7 +24,6 @@ describe("UCSBRecommendationRequestsTable tests", () => {
     
     // arrange
     const currentUser = currentUserFixtures.adminUser;
-
     // act
     render(
       <QueryClientProvider client={queryClient}>

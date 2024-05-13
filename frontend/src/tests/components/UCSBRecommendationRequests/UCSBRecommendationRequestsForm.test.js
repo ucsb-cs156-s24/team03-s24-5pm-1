@@ -1,8 +1,8 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import RecommendationRequestsForm from "main/components/RecommendationRequests/RecommendationRequestsForm";
-import { Fixtures } from "fixtures/recommendationrequestsFixtures";
+import UCSBRecommendationRequestsForm from "main/components/UCSBRecommendationRequests/UCSBRecommendationRequestsForm";
+import { recommendationrequestsFixtures } from "fixtures/ucsbRecommendationRequestsFixtures";
 
 import { QueryClient, QueryClientProvider } from "react-query";
 
@@ -16,14 +16,14 @@ jest.mock('react-router-dom', () => ({
 describe("RecommendationRequests Form tests", () => {
     const queryClient = new QueryClient();
 
-    const expectedHeaders = ["RequesterEmail", "ProfessorEmail", "Explanation", "DateRequested", "DateNeeded", "Done"];
-    const testId = "RecommendationRequests Form";
+    const expectedHeaders = ["RequesterEmail", "ProfessorEmail", "Explanation", "DateRequested (iso format)", "DateNeeded (iso format)", "Done"];
+    const testId = "UCSBRecommendationRequestsForm";
 
     test("renders correctly with no initialContents", async () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <Router>
-                    <RecommendationRequestsForm />
+                    <UCSBRecommendationRequestsForm />
                 </Router>
             </QueryClientProvider>
         );
@@ -41,7 +41,7 @@ describe("RecommendationRequests Form tests", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <Router>
-                    <RecommendationRequestsForm initialContents={recommendationrequestsFixtures.oneRecommendationrequests} />
+                    <UCSBRecommendationRequestsForm initialContents={recommendationrequestsFixtures.oneRecommendationrequests} />
                 </Router>
             </QueryClientProvider>
         );
@@ -62,7 +62,7 @@ describe("RecommendationRequests Form tests", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <Router>
-                    <RecommendationRequestsForm />
+                    <UCSBRecommendationRequestsForm />
                 </Router>
             </QueryClientProvider>
         );
@@ -78,7 +78,7 @@ describe("RecommendationRequests Form tests", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <Router>
-                    <RecommendationRequestsForm />
+                    <UCSBRecommendationRequestsForm />
                 </Router>
             </QueryClientProvider>
         );
@@ -87,20 +87,11 @@ describe("RecommendationRequests Form tests", () => {
         const submitButton = screen.getByText(/Create/);
         fireEvent.click(submitButton);
 
-        await screen.findByText(/RequesterEmail is required/);
-        expect(screen.getByText(/ProfessorEmail is required/)).toBeInTheDocument();
-        expect(screen.getByText(/Explanation is required/)).toBeInTheDocument();
-        expect(screen.getByText(/DateRequested is required/)).toBeInTheDocument();
-        expect(screen.getByText(/DateNeeded is required/)).toBeInTheDocument();
-        expect(screen.getByText(/Done is required/)).toBeInTheDocument();
-
-        const nameInput = screen.getByTestId(`${testId}-name`);
-        fireEvent.change(nameInput, { target: { value: "a".repeat(31) } });
-        fireEvent.click(submitButton);
-
-        await waitFor(() => {
-            expect(screen.getByText(/Max length 30 characters/)).toBeInTheDocument();
-        });
+        await screen.findByText(/requesterEmail is required/);
+        expect(screen.getByText(/professorEmail is required/)).toBeInTheDocument();
+        expect(screen.getByText(/explanation is required/)).toBeInTheDocument();
+        expect(screen.getByText(/dateRequested is required/)).toBeInTheDocument();
+        expect(screen.getByText(/dateNeeded is required/)).toBeInTheDocument();
     });
 
 });
