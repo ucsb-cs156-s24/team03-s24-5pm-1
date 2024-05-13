@@ -2,7 +2,7 @@
 import React from 'react';
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
-import { ucsbRecommendationRequestsFixtures } from "fixtures/ucsbRecommendationRequestsFixtures";
+import { recommendationrequestsFixtures } from "fixtures/ucsbRecommendationRequestsFixtures";
 import { rest } from "msw";
 
 import UCSBRecommendationRequestsIndexPage from "main/pages/UCSBRecommendationRequests/UCSBRecommendationRequestsIndexPage";
@@ -40,7 +40,7 @@ ThreeItemsOrdinaryUser.parameters = {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
         rest.get('/api/ucsbrecommendationrequests/all', (_req, res, ctx) => {
-            return res(ctx.json(ucsbRecommendationRequestsFixtures.threerecommendationrequests));
+            return res(ctx.json(recommendationrequestsFixtures.threerecommendationrequests));
         }),
     ],
 }
@@ -56,7 +56,7 @@ ThreeItemsAdminUser.parameters = {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
         rest.get('/api/ucsbrecommendationrequests/all', (_req, res, ctx) => {
-            return res(ctx.json(ucsbRecommendationRequestsFixtures.threerecommendationrequests));
+            return res(ctx.json(recommendationrequestsFixtures.threerecommendationrequests));
         }),
         rest.delete('/api/ucsbrecommendationrequests', (req, res, ctx) => {
             window.alert("DELETE: " + JSON.stringify(req.url));

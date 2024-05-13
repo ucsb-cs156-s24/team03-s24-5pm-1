@@ -108,7 +108,7 @@ describe("UCSBRecommendationRequestsCreatePage tests", () => {
                 "done" : true  
         });
 
-        expect(mockToast).toBeCalledWith("New ucsbRecommendationRequests Created - id: 17 requesterEmail: requesterEmail 17");
+        expect(mockToast).toBeCalledWith("New ucsbRecommendationRequests Created - id: 17 requesterEmail: requester email 17");
         expect(mockNavigate).toBeCalledWith({ "to": "/UCSBRecommendationRequests" });
     });
 

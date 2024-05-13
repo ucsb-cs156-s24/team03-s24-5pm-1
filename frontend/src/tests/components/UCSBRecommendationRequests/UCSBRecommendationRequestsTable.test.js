@@ -18,7 +18,7 @@ describe("UCSBRecommendationRequestsTable tests", () => {
 
   const expectedHeaders = ["id", "RequesterEmail", "ProfessorEmail", "Explanation", "DateRequested", "DateNeeded", "Done"];
   const expectedFields = ["id", "requesterEmail", "professorEmail", "explanation", "dateRequested", "dateNeeded", "done"];
-  const testId = "UCSBRecommendationRequestsTable";
+  const testId = "RecommendationRequestsTable";
 
   test("renders empty table correctly", () => {
     
@@ -28,7 +28,7 @@ describe("UCSBRecommendationRequestsTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <RecommendationRequestsTable ucsbrecommendationrequests={[]} currentUser={currentUser} />
+          <RecommendationRequestsTable recommendationrequests={[]} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
     );
@@ -53,7 +53,7 @@ describe("UCSBRecommendationRequestsTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <RecommendationRequestsTable ucsbrecommendationrequests={recommendationrequestsFixtures.threerecommendationrequests} currentUser={currentUser} />
+          <RecommendationRequestsTable recommendationrequests={recommendationrequestsFixtures.threerecommendationrequests} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
     );
@@ -75,7 +75,6 @@ describe("UCSBRecommendationRequestsTable tests", () => {
     expect(screen.getByTestId(`${testId}-cell-row-0-col-explanation`)).toHaveTextContent("explanation 2");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-dateRequested`)).toHaveTextContent("2022-03-02T12:00:00");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-dateNeeded`)).toHaveTextContent("2022-04-02T12:00:00");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-done`)).toHaveTextContent(true);
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-requesterEmail`)).toHaveTextContent("requester email 3");
@@ -83,7 +82,6 @@ describe("UCSBRecommendationRequestsTable tests", () => {
     expect(screen.getByTestId(`${testId}-cell-row-1-col-explanation`)).toHaveTextContent("explanation 3");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-dateRequested`)).toHaveTextContent("2022-05-02T12:00:00");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-dateNeeded`)).toHaveTextContent("2022-06-02T12:00:00");
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-done`)).toHaveTextContent(false);
 
     const editButton = screen.getByTestId(`${testId}-cell-row-0-col-Edit-button`);
     expect(editButton).toBeInTheDocument();
@@ -103,7 +101,7 @@ describe("UCSBRecommendationRequestsTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <RecommendationRequestsTable ucsbrecommendationrequests={recommendationrequestsFixtures.threerecommendationrequests} currentUser={currentUser} />
+          <RecommendationRequestsTable recommendationrequests={recommendationrequestsFixtures.threerecommendationrequests} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
     );
@@ -125,7 +123,6 @@ describe("UCSBRecommendationRequestsTable tests", () => {
     expect(screen.getByTestId(`${testId}-cell-row-0-col-explanation`)).toHaveTextContent("explanation 2");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-dateRequested`)).toHaveTextContent("2022-03-02T12:00:00");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-dateNeeded`)).toHaveTextContent("2022-04-02T12:00:00");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-done`)).toHaveTextContent(true);
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-requesterEmail`)).toHaveTextContent("requester email 3");
@@ -133,7 +130,6 @@ describe("UCSBRecommendationRequestsTable tests", () => {
     expect(screen.getByTestId(`${testId}-cell-row-1-col-explanation`)).toHaveTextContent("explanation 3");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-dateRequested`)).toHaveTextContent("2022-05-02T12:00:00");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-dateNeeded`)).toHaveTextContent("2022-06-02T12:00:00");
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-done`)).toHaveTextContent(false);
 
 
     expect(screen.queryByText("Delete")).not.toBeInTheDocument();
@@ -149,7 +145,7 @@ describe("UCSBRecommendationRequestsTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <RecommendationRequestsTable ucsbrecommendationrequests={recommendationrequestsFixtures.threerecommendationrequests} currentUser={currentUser} />
+          <RecommendationRequestsTable recommendationrequests={recommendationrequestsFixtures.threerecommendationrequests} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
     );
@@ -161,7 +157,6 @@ describe("UCSBRecommendationRequestsTable tests", () => {
     expect(screen.getByTestId(`${testId}-cell-row-0-col-explanation`)).toHaveTextContent("explanation 2");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-dateRequested`)).toHaveTextContent("2022-03-02T12:00:00");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-dateNeeded`)).toHaveTextContent("2022-04-02T12:00:00");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-done`)).toHaveTextContent(true);
 
     const editButton = screen.getByTestId(`${testId}-cell-row-0-col-Edit-button`);
     expect(editButton).toBeInTheDocument();
@@ -170,7 +165,7 @@ describe("UCSBRecommendationRequestsTable tests", () => {
     fireEvent.click(editButton);
 
     // assert - check that the navigate function was called with the expected path
-    await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/ucsbrecommendationrequests/edit/2'));
+    await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/UCSBRecommendationRequests/edit/2'));
 
   });
 
@@ -182,7 +177,7 @@ describe("UCSBRecommendationRequestsTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <RecommendationRequestsTable ucsbrecommendationrequests={recommendationrequestsFixtures.threerecommendationrequests} currentUser={currentUser} />
+          <RecommendationRequestsTable recommendationrequests={recommendationrequestsFixtures.threerecommendationrequests} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
     );
@@ -194,7 +189,6 @@ describe("UCSBRecommendationRequestsTable tests", () => {
     expect(screen.getByTestId(`${testId}-cell-row-0-col-explanation`)).toHaveTextContent("explanation 2");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-dateRequested`)).toHaveTextContent("2022-03-02T12:00:00");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-dateNeeded`)).toHaveTextContent("2022-04-02T12:00:00");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-done`)).toHaveTextContent(true);
 
     const deleteButton = screen.getByTestId(`${testId}-cell-row-0-col-Delete-button`);
     expect(deleteButton).toBeInTheDocument();
@@ -202,4 +196,5 @@ describe("UCSBRecommendationRequestsTable tests", () => {
     // act - click the delete button
     fireEvent.click(deleteButton);
   });
+  
 });

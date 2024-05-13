@@ -1,6 +1,6 @@
 import React from 'react';
 import UCSBRecommendationRequestsForm from "main/components/UCSBRecommendationRequests/UCSBRecommendationRequestsForm"
-import { ucsbRecommendationRequestsFixtures } from 'fixtures/ucsbRecommendationRequestsFixtures';
+import { recommendationrequestsFixtures } from 'fixtures/ucsbRecommendationRequestsFixtures';
 
 export default {
     title: 'components/UCSBRecommendationRequests/UCSBRecommendationRequestsForm',
@@ -27,7 +27,7 @@ Create.args = {
 export const Update = Template.bind({});
 
 Update.args = {
-    initialContents: ucsbRecommendationRequestsFixtures.oneDate,
+    initialContents: recommendationrequestsFixtures.oneRecommendationrequests,
     buttonLabel: "Update",
     submitAction: (data) => {
         console.log("Submit was clicked with data: ", data); 

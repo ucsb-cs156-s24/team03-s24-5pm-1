@@ -94,5 +94,29 @@ describe("RecommendationRequests Form tests", () => {
         expect(screen.getByText(/dateNeeded is required/)).toBeInTheDocument();
     });
 
+    test("No Error messsages on good input", async () => {
+
+        render(
+            <QueryClientProvider client={queryClient}>
+                <Router>
+                    <UCSBRecommendationRequestsForm />
+                </Router>
+            </QueryClientProvider>
+        );
+
+        const DateRequestedField = screen.getByTestId("UCSBRecommendationRequestsForm-dateRequested");
+        const DateNeededField = screen.getByTestId("UCSBRecommendationRequestsForm-dateNeeded");
+        const submitButton = screen.getByText(/Create/);
+        
+        fireEvent.change(DateRequestedField, { target: { value: '2022-01-01T11:00' } });
+        fireEvent.change(DateNeededField, { target: { value: '2022-01-01T13:00' } });
+        fireEvent.click(submitButton);
+
+        expect(screen.queryByText(/Date Requested is required in ISO format./)).not.toBeInTheDocument();
+        expect(screen.queryByText(/Date Needed is required in ISO format./)).not.toBeInTheDocument();
+
+    });
+
+
 });
 

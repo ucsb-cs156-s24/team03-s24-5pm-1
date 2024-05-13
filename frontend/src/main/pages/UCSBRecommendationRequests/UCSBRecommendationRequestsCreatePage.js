@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 export default function UCSBRecommendationRequestsCreatePage({storybook=false}) {
 
   const objectToAxiosParams = (ucsbRecommendationRequests) => ({
-    url: "/api/ucsbdrecommendationrequests/post",
+    url: "/api/ucsbrecommendationrequests/post",
     method: "POST",
     params: {
       requesterEmail: ucsbRecommendationRequests.requesterEmail,

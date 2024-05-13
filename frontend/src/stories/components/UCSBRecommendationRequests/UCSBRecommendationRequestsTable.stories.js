@@ -1,17 +1,17 @@
 import React from 'react';
-import UCSBRecommendationRequests from "main/components/UCSBRecommendationRequests/UCSBRecommendationRequestsTable";
-import { ucsbRecommendationRequestsFixtures } from 'fixtures/ucsbRecommendationRequestsFixtures';
+import RecommendationRequestsTable from "main/components/UCSBRecommendationRequests/UCSBRecommendationRequestsTable";
+import { recommendationrequestsFixtures } from 'fixtures/ucsbRecommendationRequestsFixtures';
 import { currentUserFixtures } from 'fixtures/currentUserFixtures';
 import { rest } from "msw";
 
 export default {
     title: 'components/UCSBRecommendationRequests/UCSBRecommendationRequestsTable',
-    component: UCSBRecommendationRequestsTable
+    component: RecommendationRequestsTable
 };
 
 const Template = (args) => {
     return (
-        <UCSBRecommendationRequestsTable {...args} />
+        <RecommendationRequestsTable {...args} />
     )
 };
 
@@ -24,13 +24,13 @@ Empty.args = {
 export const ThreeItemsOrdinaryUser = Template.bind({});
 
 ThreeItemsOrdinaryUser.args = {
-    dates: ucsbRecommendationRequestsFixtures.threerecommendationrequests,
+    recommendationrequests: recommendationrequestsFixtures.threerecommendationrequests,
     currentUser: currentUserFixtures.userOnly,
 };
 
 export const ThreeItemsAdminUser = Template.bind({});
 ThreeItemsAdminUser.args = {
-    dates: ucsbRecommendationRequestsFixtures.threerecommendationrequests,
+    recommendationrequests: recommendationrequestsFixtures.threerecommendationrequests,
     currentUser: currentUserFixtures.adminUser,
 }
 
