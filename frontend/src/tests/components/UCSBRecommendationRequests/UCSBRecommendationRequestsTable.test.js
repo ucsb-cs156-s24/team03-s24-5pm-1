@@ -75,6 +75,7 @@ describe("UCSBRecommendationRequestsTable tests", () => {
     expect(screen.getByTestId(`${testId}-cell-row-0-col-explanation`)).toHaveTextContent("explanation 2");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-dateRequested`)).toHaveTextContent("2022-03-02T12:00:00");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-dateNeeded`)).toHaveTextContent("2022-04-02T12:00:00");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-Done`)).toHaveTextContent("true");
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-requesterEmail`)).toHaveTextContent("requester email 3");
@@ -82,6 +83,7 @@ describe("UCSBRecommendationRequestsTable tests", () => {
     expect(screen.getByTestId(`${testId}-cell-row-1-col-explanation`)).toHaveTextContent("explanation 3");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-dateRequested`)).toHaveTextContent("2022-05-02T12:00:00");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-dateNeeded`)).toHaveTextContent("2022-06-02T12:00:00");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-Done`)).toHaveTextContent("false");
 
     const editButton = screen.getByTestId(`${testId}-cell-row-0-col-Edit-button`);
     expect(editButton).toBeInTheDocument();
@@ -123,6 +125,7 @@ describe("UCSBRecommendationRequestsTable tests", () => {
     expect(screen.getByTestId(`${testId}-cell-row-0-col-explanation`)).toHaveTextContent("explanation 2");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-dateRequested`)).toHaveTextContent("2022-03-02T12:00:00");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-dateNeeded`)).toHaveTextContent("2022-04-02T12:00:00");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-Done`)).toHaveTextContent("true");
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-requesterEmail`)).toHaveTextContent("requester email 3");
@@ -130,6 +133,7 @@ describe("UCSBRecommendationRequestsTable tests", () => {
     expect(screen.getByTestId(`${testId}-cell-row-1-col-explanation`)).toHaveTextContent("explanation 3");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-dateRequested`)).toHaveTextContent("2022-05-02T12:00:00");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-dateNeeded`)).toHaveTextContent("2022-06-02T12:00:00");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-Done`)).toHaveTextContent("false");
 
 
     expect(screen.queryByText("Delete")).not.toBeInTheDocument();
@@ -157,6 +161,7 @@ describe("UCSBRecommendationRequestsTable tests", () => {
     expect(screen.getByTestId(`${testId}-cell-row-0-col-explanation`)).toHaveTextContent("explanation 2");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-dateRequested`)).toHaveTextContent("2022-03-02T12:00:00");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-dateNeeded`)).toHaveTextContent("2022-04-02T12:00:00");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-Done`)).toHaveTextContent("true");
 
     const editButton = screen.getByTestId(`${testId}-cell-row-0-col-Edit-button`);
     expect(editButton).toBeInTheDocument();
