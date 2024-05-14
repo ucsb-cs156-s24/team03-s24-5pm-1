@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for pages/HelpRequests/HelpRequestsCreatePage.js</title>
+    <title>Code coverage report for pages/UCSBRecommendationRequests/UCSBRecommendationRequestsCreatePage.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">pages/HelpRequests</a> HelpRequestsCreatePage.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">pages/UCSBRecommendationRequests</a> UCSBRecommendationRequestsCreatePage.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -115,11 +115,7 @@
 <a name='L50'></a><a href='#L50'>50</a>
 <a name='L51'></a><a href='#L51'>51</a>
 <a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a>
-<a name='L56'></a><a href='#L56'>56</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L53'></a><a href='#L53'>53</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -128,7 +124,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -172,39 +167,36 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&nbsp;
-import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
-import HelpRequestsForm from "main/components/HelpRequests/HelpRequestsForm";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
+import UCSBRecommendationRequestsForm from "main/components/UCSBRecommendationRequests/UCSBRecommendationRequestsForm";
 import { Navigate } from 'react-router-dom'
 import { useBackendMutation } from "main/utils/useBackend";
 import { toast } from "react-toastify";
 &nbsp;
-export default function HelpRequestsCreatePage({storybook=false}) {
+export default function UCSBRecommendationRequestsCreatePage({storybook=false}) {
 &nbsp;
-  const objectToAxiosParams = (HelpRequest) =&gt; ({
-    url: "/api/helprequest/post",
+  const objectToAxiosParams = (ucsbRecommendationRequests) =&gt; ({
+    url: "/api/ucsbrecommendationrequests/post",
     method: "POST",
     params: {
-      requesterEmail: HelpRequest.requesterEmail,
-      teamId: HelpRequest.teamId,
-      tableOrBreakoutRoom: HelpRequest.tableOrBreakoutRoom,
-      explanation: HelpRequest.explanation,
-      solved: HelpRequest.solved,
-      localDateTime: HelpRequest.requestTime
+      requesterEmail: ucsbRecommendationRequests.requesterEmail,
+      professorEmail: ucsbRecommendationRequests.professorEmail,
+      explanation: ucsbRecommendationRequests.explanation,
+      dateRequested: ucsbRecommendationRequests.dateRequested,
+      dateNeeded: ucsbRecommendationRequests.dateNeeded,
+      done: ucsbRecommendationRequests.done
     }
   });
 &nbsp;
-  // Stryker disable all : placeholder for future implementation
-  const onSuccess = (HelpRequest) =&gt; {
-    toast(`New helprequest Created - id: ${HelpRequest.id}`);
+  const onSuccess = (ucsbRecommendationRequests) =&gt; {
+    toast(`New ucsbRecommendationRequests Created - id: ${ucsbRecommendationRequests.id} requesterEmail: ${ucsbRecommendationRequests.requesterEmail}`);
   }
 &nbsp;
   const mutation = useBackendMutation(
     objectToAxiosParams,
      { onSuccess }, 
      // Stryker disable next-line all : hard to set up test for caching
-     ["/api/helprequest/all"]
+     ["/api/ucsbrecommendationrequests/all"]
      );
 &nbsp;
   const { isSuccess } = mutation
@@ -214,21 +206,20 @@ export default function HelpRequestsCreatePage({storybook=false}) {
   }
 &nbsp;
   if (isSuccess &amp;&amp; !storybook) {
-    return &lt;Navigate to="/helprequests" /&gt;
+    return &lt;Navigate to="/UCSBRecommendationRequests" /&gt;
   }
 &nbsp;
   return (
     &lt;BasicLayout&gt;
       &lt;div className="pt-2"&gt;
-        &lt;h1&gt;Create New Help Request&lt;/h1&gt;
+        &lt;h1&gt;Create New UCSBRecommendationRequests&lt;/h1&gt;
 &nbsp;
-        &lt;HelpRequestsForm submitAction={onSubmit} /&gt;
+        &lt;UCSBRecommendationRequestsForm submitAction={onSubmit} /&gt;
 &nbsp;
       &lt;/div&gt;
     &lt;/BasicLayout&gt;
   )
-}
-&nbsp;</pre></td></tr></table></pre>
+}</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
