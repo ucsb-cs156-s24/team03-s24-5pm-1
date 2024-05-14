@@ -23,6 +23,9 @@ import PlaceholderIndexPage from "main/pages/Placeholder/PlaceholderIndexPage";
 import PlaceholderCreatePage from "main/pages/Placeholder/PlaceholderCreatePage";
 import PlaceholderEditPage from "main/pages/Placeholder/PlaceholderEditPage";
 
+import UCSBDiningCommonsMenuItemIndexPage from "main/pages/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemIndexPage";
+import UCSBDiningCommonsMenuItemCreatePage from "main/pages/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemCreatePage";
+import UCSBDiningCommonsMenuItemEditPage from "main/pages/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemEditPage";
 
 import UCSBOrganizationsIndexPage from "main/pages/UCSBOrganizations/UCSBOrganizationsIndexPage";
 import UCSBOrganizationsCreatePage from "main/pages/UCSBOrganizations/UCSBOrganizationsCreatePage";
@@ -114,6 +117,12 @@ function App() {
           )
         }
 
+                {
+          hasRole(currentUser, "ROLE_USER") && (
+            <>
+              <Route exact path="/ucsbmenuitems" element={<UCSBDiningCommonsMenuItemIndexPage />} />
+
+
 
 {
           hasRole(currentUser, "ROLE_USER") && (
@@ -148,6 +157,7 @@ function App() {
             <>
               <Route exact path="/helprequests" element={<HelpRequestsIndexPage />} />
 
+
             </>
           )
         }
@@ -155,11 +165,16 @@ function App() {
           hasRole(currentUser, "ROLE_ADMIN") && (
             <>
 
+              <Route exact path="/ucsbmenuitems/edit/:id" element={<UCSBDiningCommonsMenuItemEditPage />} />
+              <Route exact path="/ucsbmenuitems/create" element={<UCSBDiningCommonsMenuItemCreatePage />} />
+
+
               <Route exact path="/UCSBOrganizations/edit/:orgCode" element={<UCSBOrganizationsEditPage />} />
               <Route exact path="/UCSBOrganizations/create" element={<UCSBOrganizationsCreatePage />} />
 
               <Route exact path="/helprequests/edit/:id" element={<HelpRequestsEditPage />} />
               <Route exact path="/helprequests/create" element={<HelpRequestsCreatePage />} />
+
 
 
             </>
