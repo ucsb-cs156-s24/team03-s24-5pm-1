@@ -73,6 +73,7 @@ public class UCSBOrganizationsControllerTests extends ControllerTestCase {
                 Map<String, Object> json = responseToJson(response);
                 assertEquals("EntityNotFoundException", json.get("type"));
                 assertEquals("UCSBOrganizations with id OSLI not found", json.get("message"));
+                
         }
 
         @WithMockUser(roles = { "USER" })
