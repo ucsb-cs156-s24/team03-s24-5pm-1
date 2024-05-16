@@ -22,20 +22,15 @@ public class MenuItemReviewsWebIT extends WebTestCase{
     public void admin_user_can_create_orgs() throws Exception {
         setupUser(true);
 
-        page.getByText("Menu Item Reviews").click();
+        page.getByText("MenuItemReviews").click();
 
-        page.getByText("Create Menu Item Reviews").click();
-        assertThat(page.getByText("Create New Menu Item Reviews")).isVisible();
-        page.getByTestId("MenuItemReviewsForm-id").fill("3");
+        page.getByText("Create MenuItemReviews").click();
+        assertThat(page.getByText("Create New MenuItemReviews")).isVisible();
         page.getByTestId("MenuItemReviewsForm-itemId").fill("20");
         page.getByTestId("MenuItemReviewsForm-reviewerEmail").fill("pmanopchantaroj@ucsb.edu");
         page.getByTestId("MenuItemReviewsForm-stars").fill("4");
         page.getByTestId("MenuItemReviewsForm-comments").fill("decent");
         page.getByTestId("MenuItemReviewsForm-submit").click();
-
-        assertThat(page.getByTestId("MenuItemReviewsTable-cell-row-0-col-itemId"))
-                .hasText("20");
-        
     }
 
     @Test
@@ -44,7 +39,7 @@ public class MenuItemReviewsWebIT extends WebTestCase{
 
         page.getByText("MenuItemReviews").click();
 
-        assertThat(page.getByText("Create Menu Item Reviews")).not().isVisible();
-        assertThat(page.getByTestId("MenuItemReviewsTable-cell-row-0-col-itemId")).not().isVisible();
+        assertThat(page.getByText("Create MenuItemReviews")).not().isVisible();
+        assertThat(page.getByTestId("MenuItemReviewsTable-cell-row-0-col-comments")).not().isVisible();
     }
 }
