@@ -60,21 +60,21 @@ public class UCSBOrganizationsIT {
         public void test_that_logged_in_user_can_get_by_id_when_the_id_exists() throws Exception {
                 // arrange
 
-                UCSBOrganizations UCSBOrganizations = UCSBOrganizations.builder()
+                UCSBOrganizations org = UCSBOrganizations.builder()
                         .orgCode("SKY")
-                        .orgTranslationShort("SKYDIVING CLUB")
-                        .orgTranslation	("SKYDIVING CLUB AT UCSB")
-                        .inactive("false")
+                        .orgTranslationShort("SKYDIVINGCLUB")
+                        .orgTranslation	("SKYDIVINGCLUBATUCSB")
+                        .inactive(false)
                         .build();
                                 
-                UCSBOrganizationsRepository.save(UCSBOrganizations);
+                UCSBOrganizationsRepository.save(org);
 
                 // act
                 MvcResult response = mockMvc.perform(get("/api/UCSBOrganizations?orgCode=SKY"))
                                 .andExpect(status().isOk()).andReturn();
 
                 // assert
-                String expectedJson = mapper.writeValueAsString(UCSBOrganizations);
+                String expectedJson = mapper.writeValueAsString(org);
                 String responseString = response.getResponse().getContentAsString();
                 assertEquals(expectedJson, responseString);
         }
@@ -84,21 +84,21 @@ public class UCSBOrganizationsIT {
         public void an_admin_user_can_post_a_new_UCSBOrganizations() throws Exception {
                 // arrange
 
-                UCSBOrganizations UCSBOrganizations1 = UCSBOrganizations.builder()
+                UCSBOrganizations org1 = UCSBOrganizations.builder()
                                 .orgCode("SKY")
-                                .orgTranslationShort("SKYDIVING CLUB")
-                                .orgTranslation	("SKYDIVING CLUB AT UCSB")
-                                .inactive("false")
+                                .orgTranslationShort("SKYDIVINGCLUB")
+                                .orgTranslation	("SKYDIVINGCLUBATUCSB")
+                                .inactive(false)
                                 .build();
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                post("/api/UCSBOrganizations/post?orgTranslationShort=SKYDIVING CLUB&orgTranslation=SKYDIVING CLUB AT UCSB&inactive=false")
+                                post("/api/UCSBOrganizations/post?orgTranslationShort=SKYDIVINGCLUB&orgTranslation=SKYDIVINGCLUBATUCSB")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
                 // assert
-                String expectedJson = mapper.writeValueAsString(UCSBOrganizations1);
+                String expectedJson = mapper.writeValueAsString(org1);
                 String responseString = response.getResponse().getContentAsString();
                 assertEquals(expectedJson, responseString);
         }
