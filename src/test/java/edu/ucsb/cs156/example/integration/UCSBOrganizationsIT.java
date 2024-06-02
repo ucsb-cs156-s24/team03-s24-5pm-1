@@ -90,6 +90,8 @@ public class UCSBOrganizationsIT {
                                 .orgTranslation	("SKYDIVING_CLUB_AT_UCSB")
                                 .inactive(true)
                                 .build();
+                
+                when(ucsbOrganizationsRepository.save(eq(org1))).thenReturn(org1);
 
                 // act
                 MvcResult response = mockMvc.perform(
