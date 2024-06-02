@@ -27,6 +27,7 @@ public class UCSBOrganizationsWebIT extends WebTestCase {
         assertThat(page.getByText("Create New UCSBOrganizations")).isVisible();
         page.getByTestId("UCSBOrganizationsForm-orgTranslationShort").fill("SKYDIVING_CLUB");
         page.getByTestId("UCSBOrganizationsForm-orgTranslation").fill("SKYDIVING_CLUB_AT_UCSB");
+        page.getByTestId("UCSBOrganizationsForm-inactive").fill(false);
         page.getByTestId("UCSBOrganizationsForm-submit").click();
 
         assertThat(page.getByTestId("UCSBOrganizationsTable-cell-row-0-col-orgTranslation"))
@@ -35,13 +36,14 @@ public class UCSBOrganizationsWebIT extends WebTestCase {
         page.getByTestId("UCSBOrganizationsTable-cell-row-0-col-Edit-button").click();
         assertThat(page.getByText("Edit UCSBOrganizations")).isVisible();
         page.getByTestId("UCSBOrganizationsForm-orgTranslation").fill("SKYDIVING_CLUB_AT_UCSB");
+        page.getByTestId("UCSBOrganizationsForm-inactive").fill(false);
         page.getByTestId("UCSBOrganizationsForm-submit").click();
 
         assertThat(page.getByTestId("UCSBOrganizationsTable-cell-row-0-col-orgTranslation")).hasText("SKYDIVING_CLUB_AT_UCSB");
-
+        assertThat(page.getByTestId("UCSBOrganizationsTable-cell-row-0-col-inactive")).hasText(false);
         page.getByTestId("UCSBOrganizationsTable-cell-row-0-col-Delete-button").click();
 
-        assertThat(page.getByTestId("UCSBOrganizationsTable-cell-row-0-col-orgTranslationShort")).not().isVisible();
+        assertThat(page.getByTestId("UCSBOrganizationsTable-cell-row-0-col-orgCode")).not().isVisible();
     }
 
     @Test
@@ -51,6 +53,6 @@ public class UCSBOrganizationsWebIT extends WebTestCase {
         page.getByText("UCSBOrganizations").click();
 
         assertThat(page.getByText("Create UCSBOrganizations")).not().isVisible();
-        assertThat(page.getByTestId("UCSBOrganizationsTable-cell-row-0-col-orgTranslationShort")).not().isVisible();
+        assertThat(page.getByTestId("UCSBOrganizationsTable-cell-row-0-col-orgCode")).not().isVisible();
     }
 }
