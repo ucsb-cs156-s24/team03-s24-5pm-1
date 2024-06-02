@@ -61,7 +61,6 @@ public class UCSBOrganizationsIT {
                 // arrange
 
                 UCSBOrganizations org = UCSBOrganizations.builder()
-                        .orgCode("SKY")
                         .orgTranslationShort("SKYDIVINGCLUB")
                         .orgTranslation	("SKYDIVINGCLUBATUCSB")
                         .inactive(false)
