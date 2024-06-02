@@ -25,19 +25,19 @@ public class UCSBOrganizationsWebIT extends WebTestCase {
 
         page.getByText("Create UCSBOrganizations").click();
         assertThat(page.getByText("Create New UCSBOrganizations")).isVisible();
-        page.getByTestId("UCSBOrganizationsForm-orgTranslationShort").fill("SKYDIVINGCLUB");
-        page.getByTestId("UCSBOrganizationsForm-orgTranslation").fill("SKYDIVINGCLUBATUCSB");
+        page.getByTestId("UCSBOrganizationsForm-orgTranslationShort").fill("SKYDIVING_CLUB");
+        page.getByTestId("UCSBOrganizationsForm-orgTranslation").fill("SKYDIVING_CLUB_AT_UCSB");
         page.getByTestId("UCSBOrganizationsForm-submit").click();
 
         assertThat(page.getByTestId("UCSBOrganizationsTable-cell-row-0-col-orgTranslation"))
-                .hasText("SKYDIVINGCLUBATUCSB");
+                .hasText("SKYDIVING_CLUB_AT_UCSB");
 
         page.getByTestId("UCSBOrganizationsTable-cell-row-0-col-Edit-button").click();
         assertThat(page.getByText("Edit UCSBOrganizations")).isVisible();
-        page.getByTestId("UCSBOrganizationsForm-orgTranslation").fill("SKYDIVINGCLUBATUCSB");
+        page.getByTestId("UCSBOrganizationsForm-orgTranslation").fill("SKYDIVING_CLUB_AT_UCSB");
         page.getByTestId("UCSBOrganizationsForm-submit").click();
 
-        assertThat(page.getByTestId("UCSBOrganizationsTable-cell-row-0-col-orgTranslation")).hasText("SKYDIVINGCLUBATUCSB");
+        assertThat(page.getByTestId("UCSBOrganizationsTable-cell-row-0-col-orgTranslation")).hasText("SKYDIVING_CLUB_AT_UCSB");
 
         page.getByTestId("UCSBOrganizationsTable-cell-row-0-col-Delete-button").click();
 

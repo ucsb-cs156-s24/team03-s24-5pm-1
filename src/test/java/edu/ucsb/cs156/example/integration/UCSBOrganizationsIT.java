@@ -61,8 +61,9 @@ public class UCSBOrganizationsIT {
                 // arrange
 
                 UCSBOrganizations org = UCSBOrganizations.builder()
-                        .orgTranslationShort("SKYDIVINGCLUB")
-                        .orgTranslation	("SKYDIVINGCLUBATUCSB")
+                        .orgCode("SKY")
+                        .orgTranslationShort("SKYDIVING_CLUB")
+                        .orgTranslation	("SKYDIVING_CLUB_AT_UCSB")
                         .inactive(false)
                         .build();
                                 
@@ -85,14 +86,14 @@ public class UCSBOrganizationsIT {
 
                 UCSBOrganizations org1 = UCSBOrganizations.builder()
                                 .orgCode("SKY")
-                                .orgTranslationShort("SKYDIVINGCLUB")
-                                .orgTranslation	("SKYDIVINGCLUBATUCSB")
+                                .orgTranslationShort("SKYDIVING_CLUB")
+                                .orgTranslation	("SKYDIVING_CLUB_AT_UCSB")
                                 .inactive(false)
                                 .build();
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                post("/api/UCSBOrganizations/post?orgTranslationShort=SKYDIVINGCLUB&orgTranslation=SKYDIVINGCLUBATUCSB&inactive=false")
+                                post("/api/UCSBOrganizations/post?orgTranslationShort=SKYDIVING_CLUB&orgTranslation=SKYDIVING_CLUB_AT_UCSB&inactive=false")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
