@@ -88,12 +88,12 @@ public class UCSBOrganizationsIT {
                                 .orgCode("SKY")
                                 .orgTranslationShort("SKYDIVING_CLUB")
                                 .orgTranslation	("SKYDIVING_CLUB_AT_UCSB")
-                                .inactive(true)
+                                .inactive(false)
                                 .build();
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                post("/api/UCSBOrganizations/post?orgCode=SKY&orgTranslationShort=SKYDIVING_CLUB&orgTranslation=SKYDIVING_CLUB_AT_UCSB&inactive=true")
+                                post("/api/UCSBOrganizations/post?orgCode=SKY&orgTranslationShort=SKYDIVING_CLUB&orgTranslation=SKYDIVING_CLUB_AT_UCSB&inactive=false")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
