@@ -24,8 +24,8 @@ public class UCSBOrganizationsWebIT extends WebTestCase {
         page.getByText("UCSBOrganizations").click();
 
         page.getByText("Create UCSBOrganizations").click();
-
         assertThat(page.getByText("Create New UCSBOrganizations")).isVisible();
+        page.getByTestId("UCSBOrganizationsForm-orgCode").fill("OSLI");
         page.getByTestId("UCSBOrganizationsForm-orgTranslationShort").fill("STUDENT_LIFE");
         page.getByTestId("UCSBOrganizationsForm-orgTranslation").fill("OFFICE_OF_STUDENT_LIFE");
         page.getByTestId("UCSBOrganizationsForm-inactive").fill("false");
