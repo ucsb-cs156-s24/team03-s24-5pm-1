@@ -61,16 +61,16 @@ public class UCSBOrganizationsIT {
                 // arrange
 
                 UCSBOrganizations org = UCSBOrganizations.builder()
-                        .orgCode("SKY")
-                        .orgTranslationShort("SKYDIVING_CLUB")
-                        .orgTranslation	("SKYDIVING_CLUB_AT_UCSB")
+                        .orgCode("OSLI")
+                        .orgTranslationShort("STUDENT_LIFE")
+                        .orgTranslation	("OFFICE_OF_STUDENT_LIFE")
                         .inactive(false)
                         .build();
                                 
                 UCSBOrganizationsRepository.save(org);
 
                 // act
-                MvcResult response = mockMvc.perform(get("/api/UCSBOrganizations?orgCode=SKY"))
+                MvcResult response = mockMvc.perform(get("/api/UCSBOrganizations?orgCode=OSLI"))
                                 .andExpect(status().isOk()).andReturn();
 
                 // assert
@@ -85,15 +85,15 @@ public class UCSBOrganizationsIT {
                 // arrange
 
                 UCSBOrganizations org1 = UCSBOrganizations.builder()
-                                .orgCode("SKY")
-                                .orgTranslationShort("SKYDIVING_CLUB")
-                                .orgTranslation	("SKYDIVING_CLUB_AT_UCSB")
+                                .orgCode("OSLI")
+                                .orgTranslationShort("STUDENT_LIFE")
+                                .orgTranslation	("OFFICE_OF_STUDENT_LIFE")
                                 .inactive(false)
                                 .build();
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                post("/api/UCSBOrganizations/post?orgCode=SKY&orgTranslationShort=SKYDIVING_CLUB&orgTranslation=SKYDIVING_CLUB_AT_UCSB&inactive=false")
+                                post("/api/UCSBOrganizations/post?orgCode=OSLI&orgTranslationShort=STUDENT_LIFE&orgTranslation=OFFICE_OF_STUDENT_LIFE&inactive=false")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
