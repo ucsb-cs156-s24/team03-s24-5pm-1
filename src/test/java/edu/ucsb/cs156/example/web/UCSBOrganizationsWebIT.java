@@ -52,7 +52,7 @@ public class UCSBOrganizationsWebIT extends WebTestCase {
 
         page.getByText("UCSBOrganizations").click();
 
-        assertThat(page.getByText("Create UCSBOrganizations")).isVisible();
+        assertThat(page.getByText("Create UCSBOrganizations")).not().isVisible();
         assertThat(page.getByTestId("UCSBOrganizationsTable-cell-row-0-col-orgCode")).not().isVisible();
     }
 }
