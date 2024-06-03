@@ -52,7 +52,7 @@
                   },
                   {
                     "column": {
-                      "name": "DATE_REQUEST",
+                      "name": "DATE_REQUESTED",
                       "type": "TIMESTAMP"
                     }
                   },
