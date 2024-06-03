@@ -40,18 +40,18 @@ public class UCSBOrganizationsControllerTests extends ControllerTestCase {
         @MockBean
         UserRepository userRepository;
 
-        // Tests for GET /api/ucsbOrganizations/all
+        // Tests for GET /api/UCSBOrganizations/all
 
         @Test
         public void logged_out_users_cannot_get_all() throws Exception {
-                mockMvc.perform(get("/api/ucsbOrganizations/all"))
+                mockMvc.perform(get("/api/UCSBOrganizations/all"))
                                 .andExpect(status().is(403)); // logged out users can't get all
         }
 
         @WithMockUser(roles = { "USER" })
         @Test
         public void logged_in_users_can_get_all() throws Exception {
-                mockMvc.perform(get("/api/ucsbOrganizations/all"))
+                mockMvc.perform(get("/api/UCSBOrganizations/all"))
                                 .andExpect(status().is(200)); // logged
         }
 
@@ -64,7 +64,7 @@ public class UCSBOrganizationsControllerTests extends ControllerTestCase {
                 when(ucsbOrganizationsRepository.findById(eq("OSLI"))).thenReturn(Optional.empty());
 
                 // act
-                MvcResult response = mockMvc.perform(get("/api/ucsbOrganizations?orgCode=OSLI"))
+                MvcResult response = mockMvc.perform(get("/api/UCSBOrganizations?orgCode=OSLI"))
                                 .andExpect(status().isNotFound()).andReturn();
 
                 // assert
@@ -73,6 +73,7 @@ public class UCSBOrganizationsControllerTests extends ControllerTestCase {
                 Map<String, Object> json = responseToJson(response);
                 assertEquals("EntityNotFoundException", json.get("type"));
                 assertEquals("UCSBOrganizations with id OSLI not found", json.get("message"));
+                
         }
 
         @WithMockUser(roles = { "USER" })
@@ -101,7 +102,7 @@ public class UCSBOrganizationsControllerTests extends ControllerTestCase {
                 when(ucsbOrganizationsRepository.findAll()).thenReturn(expectedOrgs);
 
                 // act
-                MvcResult response = mockMvc.perform(get("/api/ucsbOrganizations/all"))
+                MvcResult response = mockMvc.perform(get("/api/UCSBOrganizations/all"))
                                 .andExpect(status().isOk()).andReturn();
 
                 // assert
@@ -112,18 +113,18 @@ public class UCSBOrganizationsControllerTests extends ControllerTestCase {
                 assertEquals(expectedJson, responseString);
         }
 
-        // Tests for POST /api/ucsbOrganizations...
+        // Tests for POST /api/UCSBOrganizations...
 
         @Test
         public void logged_out_users_cannot_post() throws Exception {
-                mockMvc.perform(post("/api/ucsbOrganizations/post"))
+                mockMvc.perform(post("/api/UCSBOrganizations/post"))
                                 .andExpect(status().is(403));
         }
 
         @WithMockUser(roles = { "USER" })
         @Test
         public void logged_in_regular_users_cannot_post() throws Exception {
-                mockMvc.perform(post("/api/ucsbOrganizations/post"))
+                mockMvc.perform(post("/api/UCSBOrganizations/post"))
                                 .andExpect(status().is(403)); // only admins can post
         }
 
@@ -143,7 +144,7 @@ public class UCSBOrganizationsControllerTests extends ControllerTestCase {
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                post("/api/ucsbOrganizations/post?orgCode=SKY&orgTranslationShort=SKYDIVING_CLUB&orgTranslation=SKYDIVING_CLUB_AT_UCSB&inactive=true")
+                                post("/api/UCSBOrganizations/post?orgCode=SKY&orgTranslationShort=SKYDIVING_CLUB&orgTranslation=SKYDIVING_CLUB_AT_UCSB&inactive=true")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
@@ -155,11 +156,11 @@ public class UCSBOrganizationsControllerTests extends ControllerTestCase {
         }
 
 
-        // Tests for GET /api/ucsbOrganizations?...
+        // Tests for GET /api/UCSBOrganizations?...
 
         @Test
         public void logged_out_users_cannot_get_by_id() throws Exception {
-                mockMvc.perform(get("/api/ucsbOrganizations?orgCode=OSLI"))
+                mockMvc.perform(get("/api/UCSBOrganizations?orgCode=OSLI"))
                                 .andExpect(status().is(403)); // logged out users can't get by id
         }
 
@@ -179,7 +180,7 @@ public class UCSBOrganizationsControllerTests extends ControllerTestCase {
                 when(ucsbOrganizationsRepository.findById(eq("OSLI"))).thenReturn(Optional.of(orgs));
 
                 // act
-                MvcResult response = mockMvc.perform(get("/api/ucsbOrganizations?orgCode=OSLI"))
+                MvcResult response = mockMvc.perform(get("/api/UCSBOrganizations?orgCode=OSLI"))
                                 .andExpect(status().isOk()).andReturn();
 
                 // assert
@@ -190,7 +191,7 @@ public class UCSBOrganizationsControllerTests extends ControllerTestCase {
                 assertEquals(expectedJson, responseString);
         }
 
-        // Tests for DELETE /api/ucsbOrganizations?...
+        // Tests for DELETE /api/UCSBOrganizations?...
 
         @WithMockUser(roles = { "ADMIN", "USER" })
         @Test
@@ -208,7 +209,7 @@ public class UCSBOrganizationsControllerTests extends ControllerTestCase {
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                delete("/api/ucsbOrganizations?orgCode=ZPR")
+                                delete("/api/UCSBOrganizations?orgCode=ZPR")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
@@ -230,7 +231,7 @@ public class UCSBOrganizationsControllerTests extends ControllerTestCase {
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                delete("/api/ucsbOrganizations?orgCode=OSLI")
+                                delete("/api/UCSBOrganizations?orgCode=OSLI")
                                                 .with(csrf()))
                                 .andExpect(status().isNotFound()).andReturn();
 
@@ -240,7 +241,7 @@ public class UCSBOrganizationsControllerTests extends ControllerTestCase {
                 assertEquals("UCSBOrganizations with id OSLI not found", json.get("message"));
         }
 
-        // Tests for PUT /api/ucsbOrganizations?...
+        // Tests for PUT /api/UCSBOrganizations?...
 
         @WithMockUser(roles = { "ADMIN", "USER" })
         @Test
@@ -267,7 +268,7 @@ public class UCSBOrganizationsControllerTests extends ControllerTestCase {
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                put("/api/ucsbOrganizations?orgCode=OSLI")
+                                put("/api/UCSBOrganizations?orgCode=OSLI")
                                                 .contentType(MediaType.APPLICATION_JSON)
                                                 .characterEncoding("utf-8")
                                                 .content(requestBody)
@@ -300,7 +301,7 @@ public class UCSBOrganizationsControllerTests extends ControllerTestCase {
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                put("/api/ucsbOrganizations?orgCode=OSLI")
+                                put("/api/UCSBOrganizations?orgCode=OSLI")
                                                 .contentType(MediaType.APPLICATION_JSON)
                                                 .characterEncoding("utf-8")
                                                 .content(requestBody)
