@@ -57,7 +57,6 @@ export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUr
                 <>
                   <Nav.Link as={Link} to="/restaurants">Restaurants</Nav.Link>
                   <Nav.Link as={Link} to="/ucsbmenuitems">Dining Commons Menu Items</Nav.Link>
-=======
                   <Nav.Link as={Link} to="/ucsbrecommendationrequests">UCSBRecommendationRequests</Nav.Link>
 
                   <Nav.Link as={Link} to="/ucsbdates">UCSB Dates</Nav.Link>
