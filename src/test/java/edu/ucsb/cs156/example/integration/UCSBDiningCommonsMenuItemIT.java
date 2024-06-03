@@ -22,10 +22,6 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-
 import edu.ucsb.cs156.example.entities.UCSBDiningCommonsMenuItem;
 import edu.ucsb.cs156.example.repositories.UCSBDiningCommonsMenuItemsRepository;
 import edu.ucsb.cs156.example.repositories.UserRepository;
@@ -39,7 +35,7 @@ import edu.ucsb.cs156.example.testconfig.TestConfig;
 @ActiveProfiles("integration")
 @Import(TestConfig.class)
 @DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD)
-public class RestaurantIT {
+public class UCSBDiningCommonsMenuItemIT {
         @Autowired
         public CurrentUserService currentUserService;
 
@@ -47,7 +43,7 @@ public class RestaurantIT {
         public GrantedAuthoritiesService grantedAuthoritiesService;
 
         @Autowired
-        UCSBDiningCommonsMenuItemsRepository menuItemsRepository;
+        UCSBDiningCommonsMenuItemsRepository menuItemRepository;
 
         @Autowired
         public MockMvc mockMvc;
@@ -72,11 +68,11 @@ public class RestaurantIT {
                 menuItemRepository.save(menuItem);
 
                 // act
-                MvcResult response = mockMvc.perform(get("/api/restaurants?id=1"))
+                MvcResult response = mockMvc.perform(get("/api/ucsbmenuitems?id=1"))
                                 .andExpect(status().isOk()).andReturn();
 
                 // assert
-                String expectedJson = mapper.writeValueAsString(restaurant);
+                String expectedJson = mapper.writeValueAsString(menuItem);
                 String responseString = response.getResponse().getContentAsString();
                 assertEquals(expectedJson, responseString);
         }
@@ -89,13 +85,13 @@ public class RestaurantIT {
                 UCSBDiningCommonsMenuItem menuItem1 = UCSBDiningCommonsMenuItem.builder()
                                 .id(1L)
                                 .diningCommonsCode("carrillo")
-                                .name("Crispy Salmon Roll")
+                                .name("CrispySalmonRoll")
                                 .station("Euro")
                                 .build();
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                post("/api/restaurants/post?name=Chipotle&description=Mexican")
+                                post("/api/ucsbmenuitems/post?diningCommonsCode=carrillo&name=CrispySalmonRoll&station=Euro")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
