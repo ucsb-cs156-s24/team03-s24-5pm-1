@@ -126,7 +126,6 @@ function App() {
             <>
          
               <Route exact path="/ucsbrecommendationrequests" element={<UCSBRecommendationRequestsIndexPage />} />
-=======
               <Route exact path="/menuitemreviews" element={<MenuItemReviewsIndexPage />} />
                 
             </>
@@ -138,7 +137,6 @@ function App() {
 
               <Route exact path="/ucsbrecommendationrequests/edit/:id" element={<UCSBRecommendationRequestsEditPage />} />
               <Route exact path="/ucsbrecommendationrequests/create" element={<UCSBRecommendationRequestsCreatePage />} />
-=======
               <Route exact path="/menuitemreviews/edit/:id" element={<MenuItemReviewsEditPage />} />
               <Route exact path="/menuitemreviews/create" element={<MenuItemReviewsCreatePage />} />
             </>
