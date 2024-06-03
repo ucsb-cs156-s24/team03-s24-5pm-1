@@ -31,14 +31,14 @@ public class UCSBDiningCommonsMenuItemWebIT extends WebTestCase {
         page.getByTestId("UCSBMenuItemForm-submit").click();
 
         assertThat(page.getByTestId("UCSBMenuItemsTable-cell-row-0-col-station"))
-                .hasText("Crispy Salmon Roll");
+                .hasText("Euro");
 
         page.getByTestId("UCSBMenuItemsTable-cell-row-0-col-Edit-button").click();
         assertThat(page.getByText("Edit")).isVisible();
         page.getByTestId("UCSBMenuItemForm-station").fill("Hot Cuisine");
         page.getByTestId("UCSBMenuItemForm-submit").click();
 
-        assertThat(page.getByTestId("UCSBMenuItemsTable-cell-row-0-col-station")).hasText("Crispy Salmon Roll");
+        assertThat(page.getByTestId("UCSBMenuItemsTable-cell-row-0-col-station")).hasText("Hot Cuisine");
 
         page.getByTestId("UCSBMenuItemsTable-cell-row-0-col-Delete-button").click();
 
