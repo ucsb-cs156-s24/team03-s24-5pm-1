@@ -117,18 +117,20 @@ function App() {
           )
         }
 
-                {
+        {
           hasRole(currentUser, "ROLE_USER") && (
             <>
               <Route exact path="/ucsbmenuitems" element={<UCSBDiningCommonsMenuItemIndexPage />} />
-
-
-
-{
+            </>
+            )
+        }
+        {
           hasRole(currentUser, "ROLE_USER") && (
             <>
               <Route exact path="/UCSBOrganizations" element={<UCSBOrganizationsIndexPage />} />
-
+            </>
+          )
+        }
         {
           hasRole(currentUser, "ROLE_USER") && (
             <>
