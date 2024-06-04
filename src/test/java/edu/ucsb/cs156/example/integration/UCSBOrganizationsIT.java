@@ -102,4 +102,5 @@ public class UCSBOrganizationsIT {
                 String responseString = response.getResponse().getContentAsString();
                 assertEquals(expectedJson, responseString);
         }
+        
 }
